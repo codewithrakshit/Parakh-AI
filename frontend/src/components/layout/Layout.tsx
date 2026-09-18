@@ -81,7 +81,7 @@ export default function Layout() {
         breadcrumb: 'Account Settings'
       };
     }
-    return { title: 'MetrCheck AI', subtitle: '', breadcrumb: '' };
+    return { title: 'Parakh AI', subtitle: '', breadcrumb: '' };
   };
 
   const pageInfo = getPageInfo();
@@ -114,7 +114,7 @@ export default function Layout() {
             {/* Breadcrumb & Title */}
             <div className="flex flex-col min-w-0">
               <div className="flex items-center gap-1.5 text-xs text-slate-400 dark:text-slate-500 font-medium">
-                <Link to="/" className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">MetrCheck</Link>
+                <Link to="/" className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Parakh</Link>
                 {pageInfo.breadcrumb && (
                   <>
                     <ChevronRight className="w-3 h-3 text-slate-300 dark:text-slate-600" />

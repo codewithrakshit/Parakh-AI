@@ -1,1 +1,1 @@
-"""External Integrations Package for MetrCheck AI."""
+"""External Integrations Package for Parakh AI."""

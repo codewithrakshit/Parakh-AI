@@ -77,7 +77,7 @@ def reset_rate_limits():
 def client():
     # Force test mode
     os.environ["TEST_MODE"] = "1"
-    os.environ["METRCHECK_ENV"] = "development"
+    os.environ["PARAKH_ENV"] = "development"
     settings.TEST_MODE = True
     with TestClient(app) as c:
         yield c

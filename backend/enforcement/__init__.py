@@ -1,1 +1,1 @@
-# MetrCheck AI — Enforcement package (penalties, notices)
+# Parakh AI — Enforcement package (penalties, notices)

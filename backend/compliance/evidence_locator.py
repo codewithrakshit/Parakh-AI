@@ -1,5 +1,5 @@
 """
-Deterministic, High-Precision Semantic Evidence Locator & Visual Proof Engine for MetrCheck AI.
+Deterministic, High-Precision Semantic Evidence Locator & Visual Proof Engine for Parakh AI.
 Adheres strictly to the Minimum Evidence Region Principle:
 - Directly consumes extraction provenance (source_token_ids, source_bbox) when available.
 - Groups only contiguous, spatially-close tokens supporting specific statutory claims.

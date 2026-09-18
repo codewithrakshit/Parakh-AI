@@ -104,7 +104,7 @@ def reset_state():
 @pytest.fixture(scope="module")
 def client():
     os.environ["TEST_MODE"] = "1"
-    os.environ["METRCHECK_ENV"] = "development"
+    os.environ["PARAKH_ENV"] = "development"
     settings.TEST_MODE = True
     with TestClient(app) as c:
         yield c
@@ -188,7 +188,7 @@ async def test_03_non_admin_cannot_provision_users(client):
 async def test_04_admin_provisions_audit_officer_success(client):
     """Admin provisions an AUDIT_OFFICER account: creates INVITED state and sends invitation."""
     username = "audit_officer_p72"
-    email = "auditor_p72@metrcheck.gov.in"
+    email = "auditor_p72@parakh.gov.in"
     await delete_user(username)
 
     resp = client.post(
@@ -251,7 +251,7 @@ async def test_06_admin_provision_rejects_duplicate_username_and_email(client):
         "/api/admin/users",
         json={
             "username": "unique_username_p72_99",
-            "email": "auditor_p72@metrcheck.gov.in",
+            "email": "auditor_p72@parakh.gov.in",
             "role": ROLE_AUDIT,
         },
         headers=admin_auth_headers()
@@ -289,7 +289,7 @@ async def test_08_verify_invitation_token_valid_and_invalid(client):
         "/api/admin/users",
         json={
             "username": username,
-            "email": "verify_test_p72@metrcheck.gov.in",
+            "email": "verify_test_p72@parakh.gov.in",
             "role": ROLE_AUDIT,
         },
         headers=admin_auth_headers()
@@ -317,7 +317,7 @@ async def test_09_account_activation_weak_password_rejected(client):
         "/api/admin/users",
         json={
             "username": username,
-            "email": "activate_weak_p72@metrcheck.gov.in",
+            "email": "activate_weak_p72@parakh.gov.in",
             "role": ROLE_ENFORCEMENT,
         },
         headers=admin_auth_headers()
@@ -340,7 +340,7 @@ async def test_10_account_activation_success_and_single_use(client):
         "/api/admin/users",
         json={
             "username": username,
-            "email": "activate_success_p72@metrcheck.gov.in",
+            "email": "activate_success_p72@parakh.gov.in",
             "role": ROLE_ENFORCEMENT,
         },
         headers=admin_auth_headers()
@@ -393,7 +393,7 @@ async def test_11_resend_invitation_generates_new_token(client):
         "/api/admin/users",
         json={
             "username": username,
-            "email": "resend_test_p72@metrcheck.gov.in",
+            "email": "resend_test_p72@parakh.gov.in",
             "role": ROLE_AUDIT,
         },
         headers=admin_auth_headers()
@@ -499,7 +499,7 @@ async def test_14_user_suspension_invalidates_active_jwt_immediately(client):
     # Provision and activate user
     resp_prov = client.post(
         "/api/admin/users",
-        json={"username": username, "email": "suspend_p72@metrcheck.gov.in", "role": ROLE_ENFORCEMENT},
+        json={"username": username, "email": "suspend_p72@parakh.gov.in", "role": ROLE_ENFORCEMENT},
         headers=admin_auth_headers()
     )
     token = resp_prov.json()["dev_invitation_token"]
@@ -553,7 +553,7 @@ async def test_15_role_change_invalidates_previous_sessions(client):
     # Provision and activate as AUDIT_OFFICER
     resp_prov = client.post(
         "/api/admin/users",
-        json={"username": username, "email": "role_change_p72@metrcheck.gov.in", "role": ROLE_AUDIT},
+        json={"username": username, "email": "role_change_p72@parakh.gov.in", "role": ROLE_AUDIT},
         headers=admin_auth_headers()
     )
     token = resp_prov.json()["dev_invitation_token"]

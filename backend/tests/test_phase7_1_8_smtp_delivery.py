@@ -12,8 +12,8 @@ Covers:
 8. Forgot Password Destination: Always uses stored account recovery email, never an attacker-supplied destination.
 9. Enumeration Resistance: Generic response returned for existing and non-existing accounts.
 10. Dev Token Availability: Provided in development/test environment.
-11. Dev Token Suppression: Strictly suppressed in production environment (METRCHECK_ENV=production).
-12. Frontend URL Customization: METRCHECK_FRONTEND_URL customizes origin of reset link.
+11. Dev Token Suppression: Strictly suppressed in production environment (PARAKH_ENV=production).
+12. Frontend URL Customization: PARAKH_FRONTEND_URL customizes origin of reset link.
 13. Reset Token Expiry: 15-minute validity enforced.
 14. Single-Use Token Enforcement: Token cannot be reused after successful reset.
 15. Previous Token Invalidation: New request invalidates earlier active tokens.
@@ -69,14 +69,14 @@ def reset_state():
 @pytest.fixture(scope="module")
 def client():
     os.environ["TEST_MODE"] = "1"
-    os.environ["METRCHECK_ENV"] = "development"
+    os.environ["PARAKH_ENV"] = "development"
     settings.TEST_MODE = True
     with TestClient(app) as c:
         yield c
 
 
 def test_01_provider_selection_dev_logger_default():
-    with patch.dict(os.environ, {"METRCHECK_SMTP_HOST": ""}, clear=False):
+    with patch.dict(os.environ, {"PARAKH_SMTP_HOST": ""}, clear=False):
         set_delivery_provider(None)
         provider = get_delivery_provider()
         assert isinstance(provider, DevLoggerDeliveryProvider)
@@ -84,34 +84,34 @@ def test_01_provider_selection_dev_logger_default():
 
 def test_02_provider_selection_smtp_when_configured():
     with patch.dict(os.environ, {
-        "METRCHECK_SMTP_HOST": "smtp.example.com",
-        "METRCHECK_SMTP_PORT": "587",
-        "METRCHECK_SMTP_USER": "mailer@example.com",
-        "METRCHECK_SMTP_PASS": "SecretPass123!",
-        "METRCHECK_SMTP_FROM": "support@metrcheck.gov.in"
+        "PARAKH_SMTP_HOST": "smtp.example.com",
+        "PARAKH_SMTP_PORT": "587",
+        "PARAKH_SMTP_USER": "mailer@example.com",
+        "PARAKH_SMTP_PASS": "SecretPass123!",
+        "PARAKH_SMTP_FROM": "support@parakh.gov.in"
     }, clear=False):
         set_delivery_provider(None)
         provider = get_delivery_provider()
         assert isinstance(provider, SMTPDeliveryProvider)
         assert provider.host == "smtp.example.com"
         assert provider.port == 587
-        assert provider.from_addr == "support@metrcheck.gov.in"
+        assert provider.from_addr == "support@parakh.gov.in"
 
 
 def test_03_delivery_provider_status_does_not_leak_secrets(client):
     with patch.dict(os.environ, {
-        "METRCHECK_SMTP_HOST": "smtp.mailserver.gov.in",
-        "METRCHECK_SMTP_PORT": "587",
-        "METRCHECK_SMTP_USER": "admin_user",
-        "METRCHECK_SMTP_PASS": "SUPER_SECRET_PASSWORD_NEVER_LEAK",
-        "METRCHECK_SMTP_FROM": "notifications@metrcheck.gov.in"
+        "PARAKH_SMTP_HOST": "smtp.mailserver.gov.in",
+        "PARAKH_SMTP_PORT": "587",
+        "PARAKH_SMTP_USER": "admin_user",
+        "PARAKH_SMTP_PASS": "SUPER_SECRET_PASSWORD_NEVER_LEAK",
+        "PARAKH_SMTP_FROM": "notifications@parakh.gov.in"
     }, clear=False):
         set_delivery_provider(None)
         status_data = get_delivery_provider_status()
         assert status_data["smtp_configured"] is True
         assert status_data["provider_type"] == "SMTP"
         assert status_data["smtp_host"] == "smtp.mailserver.gov.in"
-        assert status_data["smtp_from"] == "notifications@metrcheck.gov.in"
+        assert status_data["smtp_from"] == "notifications@parakh.gov.in"
         # Ensure password is NOT in status dictionary
         assert "password" not in status_data
         assert "SUPER_SECRET_PASSWORD_NEVER_LEAK" not in str(status_data)
@@ -131,7 +131,7 @@ async def test_04_smtp_provider_message_formatting_and_transmission():
         port=587,
         user="testuser",
         password="testpassword",
-        from_addr="noreply@metrcheck.gov.in",
+        from_addr="noreply@parakh.gov.in",
         use_tls=True
     )
 
@@ -140,7 +140,7 @@ async def test_04_smtp_provider_message_formatting_and_transmission():
         recipient_email = "target.officer@example.com"
         username = "officer_recipient"
         raw_token = "secure_random_token_12345"
-        reset_url = f"https://metrcheck.gov.in/reset-password?token={raw_token}"
+        reset_url = f"https://parakh.gov.in/reset-password?token={raw_token}"
 
         success = await provider.send_reset_instructions(
             username=username,
@@ -155,9 +155,9 @@ async def test_04_smtp_provider_message_formatting_and_transmission():
         
         args, _ = mock_smtp_instance.sendmail.call_args
         from_arg, to_arg, msg_str = args
-        assert from_arg == "noreply@metrcheck.gov.in"
+        assert from_arg == "noreply@parakh.gov.in"
         assert to_arg == [recipient_email]
-        assert "noreply@metrcheck.gov.in" in msg_str
+        assert "noreply@parakh.gov.in" in msg_str
         assert "target.officer@example.com" in msg_str
         assert "Subject:" in msg_str
         assert "Password_Reset_Request" in msg_str or "Password Reset Request" in msg_str
@@ -170,7 +170,7 @@ async def test_05_smtp_error_handling_gracefully_fails_without_exception():
         port=587,
         user="testuser",
         password="testpassword",
-        from_addr="noreply@metrcheck.gov.in",
+        from_addr="noreply@parakh.gov.in",
     )
 
     with patch("smtplib.SMTP", side_effect=smtplib.SMTPConnectError(421, b"Connection refused")):
@@ -213,7 +213,7 @@ async def test_06_forgot_password_uses_stored_email_and_preserves_enumeration_re
 
 
 def test_07_production_environment_suppresses_dev_token(client):
-    with patch.dict(os.environ, {"METRCHECK_ENV": "production", "ENVIRONMENT": "production"}):
+    with patch.dict(os.environ, {"PARAKH_ENV": "production", "ENVIRONMENT": "production"}):
         with patch.object(settings, "TEST_MODE", False):
             resp = client.post("/api/auth/forgot-password", json={"identifier": "admin"})
             assert resp.status_code == 200
@@ -231,14 +231,14 @@ async def test_08_custom_frontend_url_in_reset_link(client):
     pw_hash, salt = hash_password("OldPassword123!")
     await create_user(username=username, password_hash=pw_hash, salt=salt, role=ROLE_MERCHANT, email=email)
 
-    with patch.object(settings, "METRCHECK_FRONTEND_URL", "https://compliance.metrcheck.gov.in"):
+    with patch.object(settings, "PARAKH_FRONTEND_URL", "https://compliance.parakh.gov.in"):
         set_delivery_provider(None)
         resp = client.post("/api/auth/forgot-password", json={"identifier": username})
         assert resp.status_code == 200
         provider = get_delivery_provider()
         if isinstance(provider, DevLoggerDeliveryProvider):
             assert provider.last_sent is not None
-            assert provider.last_sent["reset_url"].startswith("https://compliance.metrcheck.gov.in/reset-password?token=")
+            assert provider.last_sent["reset_url"].startswith("https://compliance.parakh.gov.in/reset-password?token=")
 
 
 @pytest.mark.asyncio
@@ -325,11 +325,11 @@ async def test_11_username_with_recovery_email_invokes_smtp_to_stored_email(clie
     mock_smtp_instance = MagicMock()
     with patch("smtplib.SMTP", return_value=mock_smtp_instance):
         with patch.dict(os.environ, {
-            "METRCHECK_SMTP_HOST": "smtp.gmail.com",
-            "METRCHECK_SMTP_PORT": "587",
-            "METRCHECK_SMTP_USER": "test@gmail.com",
-            "METRCHECK_SMTP_PASS": "app-pass",
-            "METRCHECK_SMTP_FROM": "MetrCheck Security <no-reply@metrcheck.ai>",
+            "PARAKH_SMTP_HOST": "smtp.gmail.com",
+            "PARAKH_SMTP_PORT": "587",
+            "PARAKH_SMTP_USER": "test@gmail.com",
+            "PARAKH_SMTP_PASS": "app-pass",
+            "PARAKH_SMTP_FROM": "Parakh Security <no-reply@parakh.ai>",
         }, clear=False):
             set_delivery_provider(None)
 
@@ -342,7 +342,7 @@ async def test_11_username_with_recovery_email_invokes_smtp_to_stored_email(clie
             args, _ = mock_smtp_instance.sendmail.call_args
             from_arg, to_arg, msg_str = args
             assert to_arg == [recovery_email]
-            assert from_arg == "MetrCheck Security <no-reply@metrcheck.ai>"
+            assert from_arg == "Parakh Security <no-reply@parakh.ai>"
             
             import email as email_lib
             parsed_msg = email_lib.message_from_string(msg_str)
@@ -380,10 +380,10 @@ async def test_12_unknown_username_and_unknown_email_return_generic_response(cli
     mock_smtp_instance = MagicMock()
     with patch("smtplib.SMTP", return_value=mock_smtp_instance):
         with patch.dict(os.environ, {
-            "METRCHECK_SMTP_HOST": "smtp.gmail.com",
-            "METRCHECK_SMTP_PORT": "587",
-            "METRCHECK_SMTP_USER": "test@gmail.com",
-            "METRCHECK_SMTP_PASS": "app-pass",
+            "PARAKH_SMTP_HOST": "smtp.gmail.com",
+            "PARAKH_SMTP_PORT": "587",
+            "PARAKH_SMTP_USER": "test@gmail.com",
+            "PARAKH_SMTP_PASS": "app-pass",
         }, clear=False):
             set_delivery_provider(None)
 
@@ -412,10 +412,10 @@ async def test_13_username_without_recovery_email_returns_generic_response_witho
     mock_smtp_instance = MagicMock()
     with patch("smtplib.SMTP", return_value=mock_smtp_instance):
         with patch.dict(os.environ, {
-            "METRCHECK_SMTP_HOST": "smtp.gmail.com",
-            "METRCHECK_SMTP_PORT": "587",
-            "METRCHECK_SMTP_USER": "test@gmail.com",
-            "METRCHECK_SMTP_PASS": "app-pass",
+            "PARAKH_SMTP_HOST": "smtp.gmail.com",
+            "PARAKH_SMTP_PORT": "587",
+            "PARAKH_SMTP_USER": "test@gmail.com",
+            "PARAKH_SMTP_PASS": "app-pass",
         }, clear=False):
             set_delivery_provider(None)
 
@@ -443,10 +443,10 @@ async def test_14_omsainikaul_resolution_with_configured_recovery_email(client):
     mock_smtp_instance = MagicMock()
     with patch("smtplib.SMTP", return_value=mock_smtp_instance):
         with patch.dict(os.environ, {
-            "METRCHECK_SMTP_HOST": "smtp.gmail.com",
-            "METRCHECK_SMTP_PORT": "587",
-            "METRCHECK_SMTP_USER": "test@gmail.com",
-            "METRCHECK_SMTP_PASS": "app-pass",
+            "PARAKH_SMTP_HOST": "smtp.gmail.com",
+            "PARAKH_SMTP_PORT": "587",
+            "PARAKH_SMTP_USER": "test@gmail.com",
+            "PARAKH_SMTP_PASS": "app-pass",
         }, clear=False):
             set_delivery_provider(None)
 

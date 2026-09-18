@@ -1,4 +1,4 @@
-# MetrCheck AI
+# Parakh AI
 
 **AI-Powered Legal Metrology Compliance Assistant**  
 *Smart India Hackathon Problem Statement: SIH26034*
@@ -14,9 +14,9 @@
 
 ## Overview
 
-**MetrCheck AI** is an intelligent compliance auditing assistant designed to inspect packaged product labels for conformity with the **Legal Metrology (Packaged Commodities) Rules, 2011**. 
+**Parakh AI** is an intelligent compliance auditing assistant designed to inspect packaged product labels for conformity with the **Legal Metrology (Packaged Commodities) Rules, 2011**. 
 
-By pairing Optical Character Recognition (OCR) with deterministic rule evaluation and natural language extraction, MetrCheck AI detects mandatory packaging declarations (such as MRP, Net Quantity, Manufacturer details, Dates, and Customer Care contacts), identifies omissions or formatting defects, and generates an explainable compliance score and audit report.
+By pairing Optical Character Recognition (OCR) with deterministic rule evaluation and natural language extraction, Parakh AI detects mandatory packaging declarations (such as MRP, Net Quantity, Manufacturer details, Dates, and Customer Care contacts), identifies omissions or formatting defects, and generates an explainable compliance score and audit report.
 
 ---
 
@@ -37,7 +37,7 @@ There is a critical need for an automated, objective, AI-driven inspection pipel
 
 ## Solution
 
-MetrCheck AI implements an end-to-end multi-stage pipeline:
+Parakh AI implements an end-to-end multi-stage pipeline:
 
 $$\text{Product Image} \longrightarrow \text{OCR Engine} \longrightarrow \text{Information Extraction} \longrightarrow \text{Compliance Check} \longrightarrow \text{Score} \longrightarrow \text{Report}$$
 
@@ -151,7 +151,7 @@ npm run dev
 
 ## Demo Mode
 
-For rapid evaluation and demonstration during hackathons and reviews, MetrCheck AI includes a zero-dependency **Demo Mode**. You can trigger pre-analyzed test cases directly from the dashboard:
+For rapid evaluation and demonstration during hackathons and reviews, Parakh AI includes a zero-dependency **Demo Mode**. You can trigger pre-analyzed test cases directly from the dashboard:
 
 | Case | Scenario | Expected Score | Details |
 | :--- | :--- | :---: | :--- |

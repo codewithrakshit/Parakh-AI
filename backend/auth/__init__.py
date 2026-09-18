@@ -1,1 +1,1 @@
-# MetrCheck AI — Auth package
+# Parakh AI — Auth package

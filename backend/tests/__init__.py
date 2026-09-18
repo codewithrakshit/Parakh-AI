@@ -1,1 +1,1 @@
-# MetrCheck AI backend test suite
+# Parakh AI backend test suite

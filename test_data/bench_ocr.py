@@ -1,4 +1,4 @@
-# OCR engine benchmark: PaddleOCR on MetrCheck synthetic labels
+# OCR engine benchmark: PaddleOCR on Parakh synthetic labels
 # Run from project root: venv/Scripts/python.exe test_data/bench_ocr.py
 import asyncio, os, sys, time, traceback
 from pathlib import Path

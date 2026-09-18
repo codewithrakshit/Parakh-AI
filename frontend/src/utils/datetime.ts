@@ -1,5 +1,5 @@
 /**
- * MetrCheck AI — Centralized Timezone and DateTime Utility (Frontend)
+ * Parakh AI — Centralized Timezone and DateTime Utility (Frontend)
  * 
  * Standardizes parsing of UTC timestamps and conversion to India Standard Time (Asia/Kolkata).
  * Handles explicit UTC timestamps (with 'Z' / '+00:00') as well as legacy naive UTC timestamps.

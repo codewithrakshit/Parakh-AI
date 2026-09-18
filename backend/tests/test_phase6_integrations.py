@@ -72,7 +72,7 @@ async def test_fssai_cache_provider():
     res = await verifier.verify("10020021001122")
     assert res.status == FSSAIVerificationStatus.VERIFIED
     assert res.business_name == "Alpino Health Foods Pvt Ltd"
-    assert res.provider == "MetrCheck Verified FSSAI Local Cache"
+    assert res.provider == "Parakh Verified FSSAI Local Cache"
 
 
 # ============================================================================

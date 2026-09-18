@@ -1,5 +1,5 @@
 """
-Safe Database Backup Utility for MetrCheck AI.
+Safe Database Backup Utility for Parakh AI.
 Provides manual and automated backup mechanisms before database migrations.
 """
 

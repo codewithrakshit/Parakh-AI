@@ -1,85 +1,56 @@
 # Python
 __pycache__/
 *.py[cod]
-venv/
 *.egg-info/
-dist/
-build/
-apk_download/
-
-# Logs & Cache
-*.log
 .pytest_cache/
+.mypy_cache/
+
+# Python virtual environments
+venv/
+.venv/
+backend/venv/
+backend/venv311/
 
 # Node
 node_modules/
 dist/
 
-# Environment
-.env
-.env.paddle-backup
+# Build artifacts
+build/
+*.apk
+*.aab
+*.zip
+apk_download/
 
-# Agent task scratch (OMP)
-.omp_tasks/
+# Environment / secrets
+.env
+.env.*
+!.env.example
+.env.paddle-backup
 
 # Database
 *.db
+*.sqlite
+*.sqlite3
+*.db.backup*
+*.db.bak
 
-# Uploads
+# Uploads / generated files
 uploads/
+backend/uploads/
+
+# Logs & cache
+*.log
+.omp_tasks/
 
 # IDE
 .vscode/
 .idea/
 *.swp
 
+# GitHub / device authentication
+gh-device.json
+
 # OS
 .DS_Store
 Thumbs.db
-
-# MetrCheck AI local/runtime data
-.env
-.env.*
-!.env.example
-
-# Local databases
-*.db
-*.sqlite
-*.sqlite3
-
-# Uploaded/local generated files
-backend/uploads/
-uploads/
-
-# Local task/runtime data
-.omp_tasks/
-
-# Python cache
-__pycache__/
-*.pyc
-*.pyo
-.pytest_cache/
-.mypy_cache/
-
-# Python virtual environments
-backend/venv311/
-backend/venv/
-venv/
-.venv/
-
-# Local database backups
-*.db.backup*
-*.db.bak
-
-# Frontend environment files
-frontend/.env.development
-frontend/.env.production
-
-# GitHub/device authentication data
-gh-device.json
-
-# Python virtual environments
-backend/venv311/
-backend/venv/
-venv/
-.venv/

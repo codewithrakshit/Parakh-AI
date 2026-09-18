@@ -41,7 +41,7 @@ class GS1DataKartApiProvider(BaseGS1Provider):
 
         try:
             import httpx
-            headers = {"User-Agent": "MetrCheckAI-ComplianceEngine/1.0"}
+            headers = {"User-Agent": "ParakhAI-ComplianceEngine/1.0"}
             if self.api_key:
                 headers["Authorization"] = f"Bearer {self.api_key}"
 
@@ -112,7 +112,7 @@ class LocalGS1CacheProvider(BaseGS1Provider):
             return GS1VerificationRecord(
                 gtin=gtin,
                 status=entry.get("status", GS1VerificationStatus.VERIFIED),
-                provider="MetrCheck Verified GS1 Local Cache",
+                provider="Parakh Verified GS1 Local Cache",
                 brand_name=entry.get("brand_name"),
                 product_description=entry.get("product_description"),
                 company_name=entry.get("company_name"),
@@ -127,7 +127,7 @@ class LocalGS1CacheProvider(BaseGS1Provider):
         return GS1VerificationRecord(
             gtin=gtin,
             status=GS1VerificationStatus.NOT_FOUND,
-            provider="MetrCheck Verified GS1 Local Cache",
+            provider="Parakh Verified GS1 Local Cache",
             is_live=False,
             verification_timestamp=now_ts,
             message="GTIN not present in local verified cache."

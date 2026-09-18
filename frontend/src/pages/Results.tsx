@@ -482,7 +482,7 @@ export default function Results() {
         <div className="space-y-1">
           <h4 className="text-xs font-semibold text-white">Automated Statutory Compliance Screening</h4>
           <p className="text-slate-400">
-            MetrCheck AI evaluates labels against the <strong className="text-slate-300">Legal Metrology (Packaged Commodities) Rules, 2011</strong> and <strong className="text-slate-300">FSSAI Labelling Regulations, 2020</strong>. Non-detection does not confirm physical absence. Declarations marked <span className="text-indigo-400 font-semibold">NEEDS REVIEW</span> must be verified manually.
+            Parakh AI evaluates labels against the <strong className="text-slate-300">Legal Metrology (Packaged Commodities) Rules, 2011</strong> and <strong className="text-slate-300">FSSAI Labelling Regulations, 2020</strong>. Non-detection does not confirm physical absence. Declarations marked <span className="text-indigo-400 font-semibold">NEEDS REVIEW</span> must be verified manually.
           </p>
         </div>
       </div>

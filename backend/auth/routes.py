@@ -1,4 +1,4 @@
-"""MetrCheck AI — Authentication & Admin User Provisioning API routes.
+"""Parakh AI — Authentication & Admin User Provisioning API routes.
 
 Endpoints:
   Public / Self-Service:
@@ -341,7 +341,7 @@ async def forgot_password(req: ForgotPasswordRequest, request: Request):
         raw_token, token_hash, expires_at = generate_password_reset_token()
         ok = await create_password_reset_record(user["username"], token_hash, expires_at)
         if ok:
-            configured_frontend = getattr(settings, "METRCHECK_FRONTEND_URL", "").strip()
+            configured_frontend = getattr(settings, "PARAKH_FRONTEND_URL", "").strip()
             if configured_frontend:
                 origin = configured_frontend.rstrip("/")
             else:
@@ -354,7 +354,7 @@ async def forgot_password(req: ForgotPasswordRequest, request: Request):
             await provider.send_reset_instructions(user["username"], raw_token, reset_url, email=recovery_email)
             
             is_prod = (
-                os.environ.get("METRCHECK_ENV") == "production" 
+                os.environ.get("PARAKH_ENV") == "production" 
                 or os.environ.get("ENVIRONMENT") == "production"
                 or getattr(settings, "ENVIRONMENT", "") == "production"
             )
@@ -362,9 +362,9 @@ async def forgot_password(req: ForgotPasswordRequest, request: Request):
                 settings.TEST_MODE 
                 or os.environ.get("TEST_MODE") == "1" 
                 or os.environ.get("DEV_MODE") == "1" 
-                or os.environ.get("METRCHECK_ENV") == "development"
+                or os.environ.get("PARAKH_ENV") == "development"
                 or getattr(settings, "ENVIRONMENT", "") == "development"
-                or getattr(settings, "METRCHECK_DEMO_MODE", False)
+                or getattr(settings, "PARAKH_DEMO_MODE", False)
             )
             if is_dev and not is_prod:
                 dev_token = raw_token
@@ -708,7 +708,7 @@ async def admin_provision_user(
         raise HTTPException(status_code=400, detail="Could not provision user account.")
 
     # Build activation URL
-    configured_frontend = getattr(settings, "METRCHECK_FRONTEND_URL", "").strip()
+    configured_frontend = getattr(settings, "PARAKH_FRONTEND_URL", "").strip()
     if configured_frontend:
         origin = configured_frontend.rstrip("/")
     else:
@@ -737,7 +737,7 @@ async def admin_provision_user(
 
     dev_token: Optional[str] = None
     is_prod = (
-        os.environ.get("METRCHECK_ENV") == "production" 
+        os.environ.get("PARAKH_ENV") == "production" 
         or os.environ.get("ENVIRONMENT") == "production"
         or getattr(settings, "ENVIRONMENT", "") == "production"
     )
@@ -745,9 +745,9 @@ async def admin_provision_user(
         settings.TEST_MODE 
         or os.environ.get("TEST_MODE") == "1" 
         or os.environ.get("DEV_MODE") == "1" 
-        or os.environ.get("METRCHECK_ENV") == "development"
+        or os.environ.get("PARAKH_ENV") == "development"
         or getattr(settings, "ENVIRONMENT", "") == "development"
-        or getattr(settings, "METRCHECK_DEMO_MODE", False)
+        or getattr(settings, "PARAKH_DEMO_MODE", False)
     )
     if is_dev and not is_prod:
         dev_token = raw_token
@@ -784,7 +784,7 @@ async def admin_resend_invitation(
     if not ok:
         raise HTTPException(status_code=500, detail="Could not update invitation record.")
 
-    configured_frontend = getattr(settings, "METRCHECK_FRONTEND_URL", "").strip()
+    configured_frontend = getattr(settings, "PARAKH_FRONTEND_URL", "").strip()
     if configured_frontend:
         origin = configured_frontend.rstrip("/")
     else:
@@ -813,7 +813,7 @@ async def admin_resend_invitation(
 
     dev_token: Optional[str] = None
     is_prod = (
-        os.environ.get("METRCHECK_ENV") == "production" 
+        os.environ.get("PARAKH_ENV") == "production" 
         or os.environ.get("ENVIRONMENT") == "production"
         or getattr(settings, "ENVIRONMENT", "") == "production"
     )
@@ -821,9 +821,9 @@ async def admin_resend_invitation(
         settings.TEST_MODE 
         or os.environ.get("TEST_MODE") == "1" 
         or os.environ.get("DEV_MODE") == "1" 
-        or os.environ.get("METRCHECK_ENV") == "development"
+        or os.environ.get("PARAKH_ENV") == "development"
         or getattr(settings, "ENVIRONMENT", "") == "development"
-        or getattr(settings, "METRCHECK_DEMO_MODE", False)
+        or getattr(settings, "PARAKH_DEMO_MODE", False)
     )
     if is_dev and not is_prod:
         dev_token = raw_token

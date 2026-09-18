@@ -47,7 +47,7 @@ export default function About() {
           <span>Smart India Hackathon 2026 Submission</span>
         </div>
         <h1 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-slate-100 tracking-tight">
-          MetrCheck AI
+          Parakh AI
         </h1>
         <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
           Automated Statutory Compliance Screening &amp; Decision-Support System for Packaged Commodities under the <span className="font-semibold text-slate-700 dark:text-slate-300">Legal Metrology (Packaged Commodities) Rules, 2011</span> and <span className="font-semibold text-slate-700 dark:text-slate-300">FSSAI Packaging Regulations</span>.
@@ -62,9 +62,9 @@ export default function About() {
           </p>
         </Card>
         
-        <Card title="Our Solution (MetrCheck Architecture)" icon={Sparkles}>
+        <Card title="Our Solution (Parakh Architecture)" icon={Sparkles}>
           <p className="text-slate-700 dark:text-slate-300 leading-relaxed text-xs">
-            MetrCheck AI provides an end-to-end statutory screening engine combining multi-panel computer vision OCR, structured statutory declaration extraction, deterministic compliance verification against versioned rule registries, interactive visual evidence localization with bounding box overlays, prioritized corrective actions, and audit-grade PDF export dossiers.
+            Parakh AI provides an end-to-end statutory screening engine combining multi-panel computer vision OCR, structured statutory declaration extraction, deterministic compliance verification against versioned rule registries, interactive visual evidence localization with bounding box overlays, prioritized corrective actions, and audit-grade PDF export dossiers.
           </p>
         </Card>
       </div>
@@ -73,7 +73,7 @@ export default function About() {
       <div className="space-y-4">
         <div>
           <h3 className="text-sm font-bold text-slate-900 dark:text-slate-100 tracking-tight">Modular System Architecture</h3>
-          <p className="text-xs text-slate-500 dark:text-slate-400">Core architectural components powering MetrCheck AI</p>
+          <p className="text-xs text-slate-500 dark:text-slate-400">Core architectural components powering Parakh AI</p>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -98,7 +98,7 @@ export default function About() {
       <div className="bg-amber-50/80 dark:bg-amber-950/40 border border-amber-200/90 dark:border-amber-800/60 rounded-2xl p-5 text-amber-950 dark:text-amber-200 text-xs leading-relaxed space-y-1">
         <h4 className="font-bold text-amber-900 dark:text-amber-300 text-sm">Regulatory Notice &amp; Enforcement Scope</h4>
         <p>
-          MetrCheck AI is an AI-assisted compliance screening and decision-support system. It is designed to assist manufacturers, packagers, retailers, and enforcement officers in preliminary package inspections. It does not replace physical statutory inspections by authorized officers under the Legal Metrology Act, 2009 or the Food Safety and Standards Act, 2006.
+          Parakh AI is an AI-assisted compliance screening and decision-support system. It is designed to assist manufacturers, packagers, retailers, and enforcement officers in preliminary package inspections. It does not replace physical statutory inspections by authorized officers under the Legal Metrology Act, 2009 or the Food Safety and Standards Act, 2006.
         </p>
       </div>
 

@@ -1,4 +1,4 @@
-"""MetrCheck AI — Enforcement API routes.
+"""Parakh AI — Enforcement API routes.
 
 Endpoints:
   POST /api/enforcement/penalty   — advisory penalty estimate for an analysis (officer+admin)

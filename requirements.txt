@@ -1,4 +1,4 @@
-# MetrCheck AI — Legal Metrology Compliance AI Prototype
+# Parakh AI — Legal Metrology Compliance AI Prototype
 # Complete Python backend dependencies (for the ACTIVE HACKATHON copy)
 # ============================================================
 # IMPORTANT: PaddlePaddle supports Python <= 3.13 on Windows.

@@ -71,7 +71,7 @@ export default function AdminLogin() {
             <ShieldCheck className="w-6 h-6 text-indigo-400" />
           </div>
           <div>
-            <span className="text-base font-extrabold tracking-tight text-white block">MetrCheck AI</span>
+            <span className="text-base font-extrabold tracking-tight text-white block">Parakh AI</span>
             <span className="text-xs text-slate-400">Directorate of Legal Metrology</span>
           </div>
         </Link>
@@ -189,7 +189,7 @@ export default function AdminLogin() {
 
       {/* Footer */}
       <div className="max-w-md w-full mx-auto text-center text-xs text-slate-600 flex flex-col items-center gap-1">
-        <span>MetrCheck AI Security Boundary · Directorate of Legal Metrology</span>
+        <span>Parakh AI Security Boundary · Directorate of Legal Metrology</span>
         <span className="text-[10px] text-slate-500">Server: {getApiHost() || 'Not configured'}</span>
       </div>
     </div>

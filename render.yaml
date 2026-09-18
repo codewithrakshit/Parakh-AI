@@ -1,15 +1,15 @@
-# MetrCheck AI — Render Blueprint
+# Parakh AI — Render Blueprint
 # Deploy in <2 minutes:
-#   1. Push this repo to GitHub (bhardwajji-db/Lega-Metrology-)
+#   1. Push this repo to GitHub (bhardwajji-db/Parakh-AI-)
 #   2. Go to render.com → Dashboard → New + → Blueprint → connect this repo
 #   3. Render auto-detects this file and creates the web service
-#   4. The service URL will be: https://metrcheck-ai.onrender.com
+#   4. The service URL will be: https://parakh-ai.onrender.com
 #   5. Open the phone app → ⚙ Server Settings → paste that URL → Save
 #      (NO APK rebuild needed — the app stores the URL in its settings)
 
 services:
   - type: web
-    name: metrcheck-ai
+    name: parakh-ai
     runtime: docker
     # Point at the lightweight cloud Dockerfile (no PaddleOCR)
     dockerfilePath: Dockerfile.cloud
@@ -21,7 +21,7 @@ services:
     envVars:
       - key: OCR_ENGINE
         value: tesseract
-      - key: METRCHECK_DEMO_MODE
+      - key: PARAKH_DEMO_MODE
         value: "true"
       - key: UPLOAD_DIR
         value: /data/uploads

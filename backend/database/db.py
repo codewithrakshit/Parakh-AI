@@ -668,13 +668,13 @@ async def seed_default_users():
        must be provisioned explicitly via CLI bootstrap (bootstrap_admin.py).
     """
     is_prod = (
-        os.environ.get("METRCHECK_ENV") == "production" 
+        os.environ.get("PARAKH_ENV") == "production" 
         or os.environ.get("ENVIRONMENT") == "production"
         or getattr(settings, "ENVIRONMENT", "") == "production"
     )
     is_demo_explicit = (
-        getattr(settings, "METRCHECK_DEMO_MODE", False) is True
-        and os.environ.get("METRCHECK_DEMO_MODE", "true").lower() in ("true", "1")
+        getattr(settings, "PARAKH_DEMO_MODE", False) is True
+        and os.environ.get("PARAKH_DEMO_MODE", "true").lower() in ("true", "1")
     )
     if is_prod or not is_demo_explicit:
         return

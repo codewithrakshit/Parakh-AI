@@ -147,7 +147,7 @@ export default function AccountSettings() {
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="e.g. officer@metrcheck.gov.in"
+                  placeholder="e.g. officer@parakh.gov.in"
                   autoComplete="email"
                   required
                   className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-950/70 border border-slate-700 focus:border-indigo-500 outline-none text-sm text-white placeholder:text-slate-500"

@@ -1,8 +1,8 @@
-# MetrCheck AI — Docker Deployment Guide
+# Parakh AI — Docker Deployment Guide
 
-MetrCheck AI (PS 26034) is fully containerized using a two-container Docker architecture:
-1. **Backend Service (`metrcheck-backend`)**: Python 3.11 FastAPI with PaddleOCR deep learning engine (PP-OCRv4), SQLite database (aiosqlite), and rule compliance checking.
-2. **Frontend Service (`metrcheck-frontend`)**: Production React + TypeScript application built with Vite, served via an optimized Nginx Alpine image acting as a reverse proxy for `/api/` and `/uploads/`.
+Parakh AI (PS 26034) is fully containerized using a two-container Docker architecture:
+1. **Backend Service (`parakh-backend`)**: Python 3.11 FastAPI with PaddleOCR deep learning engine (PP-OCRv4), SQLite database (aiosqlite), and rule compliance checking.
+2. **Frontend Service (`parakh-frontend`)**: Production React + TypeScript application built with Vite, served via an optimized Nginx Alpine image acting as a reverse proxy for `/api/` and `/uploads/`.
 
 ---
 
@@ -47,7 +47,7 @@ docker compose down
 
 ## 4. Default Login & Demonstration Accounts
  
-In demonstration mode (`METRCHECK_DEMO_MODE=true`), operational demo accounts are seeded automatically:
+In demonstration mode (`PARAKH_DEMO_MODE=true`), operational demo accounts are seeded automatically:
  
 | Username | Password | Role | Description |
 |---|---|---|---|
@@ -114,7 +114,7 @@ If port 8080 or 8000 is occupied by another application on your host machine:
 
 ### OneDrive / Network Drive Disk Latency Note
 If running the project from a directory synced with Microsoft OneDrive or a networked file share, SQLite file locking and disk I/O may encounter occasional latency.
-- **Recommendation**: For optimal speed, run Docker from a local un-synced folder (e.g., `C:\projects\metrcheck` or your local home directory).
+- **Recommendation**: For optimal speed, run Docker from a local un-synced folder (e.g., `C:\projects\parakh` or your local home directory).
 
 ### Inspecting Logs
 ```bash

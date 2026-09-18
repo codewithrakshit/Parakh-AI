@@ -1,7 +1,7 @@
 import { Capacitor } from '@capacitor/core';
 
 /**
- * MetrCheck AI — Centralized API Configuration
+ * Parakh AI — Centralized API Configuration
  *
  * URL resolution priority:
  *   1. User-saved server URL in localStorage (explicit user override)
@@ -9,7 +9,7 @@ import { Capacitor } from '@capacitor/core';
  *   3. Empty string → ServerSetup screen on Capacitor / manual entry on web
  */
 
-const STORAGE_KEY = 'metrcheck_api_url';
+const STORAGE_KEY = 'parakh_api_url';
 
 // ---------------------------------------------------------------------------
 // Platform helpers

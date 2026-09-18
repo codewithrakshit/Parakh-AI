@@ -83,7 +83,7 @@ class FSSAILicenceVerifier:
             return FSSAIVerificationRecord(
                 licence_number=clean_licence,
                 status=FSSAIVerificationStatus.NOT_VERIFIED,
-                provider="MetrCheck Local FoSCoS Format Validator",
+                provider="Parakh Local FoSCoS Format Validator",
                 is_live=False,
                 verification_timestamp=now_ts,
                 message=f"Statutory 14-digit format valid ({clean_licence[:1]} = {category_name}, State={clean_licence[1:3]}). Live registry check unconfigured."

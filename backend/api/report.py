@@ -1,5 +1,5 @@
 """
-MetrCheck AI — Report API Endpoint (Phase 5C & 5D)
+Parakh AI — Report API Endpoint (Phase 5C & 5D)
 
 Returns a professional PDF report for a given analysis ID.
 Consumes the existing analysis result — does NOT recalculate anything.
@@ -41,7 +41,7 @@ async def get_report(id: str):
         try:
             demo_analysis = await get_demo_case(case_id)
             pdf_bytes = generate_pdf_report(demo_analysis)
-            filename = f"metrcheck-report-{id}.pdf"
+            filename = f"parakh-report-{id}.pdf"
             return StreamingResponse(
                 io.BytesIO(pdf_bytes),
                 media_type="application/pdf",
@@ -103,7 +103,7 @@ async def get_report(id: str):
     pdf_bytes = generate_pdf_report(analysis)
 
     # ── Return as downloadable PDF ──
-    filename = f"metrcheck-report-{id}.pdf"
+    filename = f"parakh-report-{id}.pdf"
     return StreamingResponse(
         io.BytesIO(pdf_bytes),
         media_type="application/pdf",
@@ -189,7 +189,7 @@ async def get_report_csv(id: str):
     writer = csv.writer(output)
     
     # Header Metadata
-    writer.writerow(["METRCHECK AI — STATUTORY COMPLIANCE INSPECTION REPORT"])
+    writer.writerow(["PARAKH AI — STATUTORY COMPLIANCE INSPECTION REPORT"])
     writer.writerow(["Inspection ID", analysis.id])
     writer.writerow(["Product Name", analysis.product_name])
     writer.writerow(["Inspection Timestamp", analysis.created_at])
@@ -246,7 +246,7 @@ async def get_report_csv(id: str):
             ])
             
     csv_content = output.getvalue()
-    filename = f"metrcheck-inspection-{id}.csv"
+    filename = f"parakh-inspection-{id}.csv"
     return StreamingResponse(
         io.BytesIO(csv_content.encode('utf-8-sig')),
         media_type="text/csv",
@@ -261,7 +261,7 @@ async def get_report_json(id: str):
     """Return the complete inspection record in JSON format for automated ingestion."""
     analysis = await _get_full_analysis_object(id)
     json_str = analysis.model_dump_json(indent=2)
-    filename = f"metrcheck-inspection-{id}.json"
+    filename = f"parakh-inspection-{id}.json"
     return StreamingResponse(
         io.BytesIO(json_str.encode('utf-8')),
         media_type="application/json",
@@ -328,7 +328,7 @@ async def get_report_xlsx(id: str):
     # Merged title row
     ws_summary.merge_cells("A1:B1")
     title_cell = ws_summary["A1"]
-    title_cell.value = "METRCHECK AI — STATUTORY COMPLIANCE INSPECTION REPORT"
+    title_cell.value = "PARAKH AI — STATUTORY COMPLIANCE INSPECTION REPORT"
     title_cell.font = title_font
     title_cell.fill = title_fill
     title_cell.alignment = align_center
@@ -559,7 +559,7 @@ async def get_report_xlsx(id: str):
     wb.save(buf)
     wb.close()
     buf.seek(0)
-    filename = f"metrcheck-inspection-{id}.xlsx"
+    filename = f"parakh-inspection-{id}.xlsx"
     return StreamingResponse(
         buf,
         media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",

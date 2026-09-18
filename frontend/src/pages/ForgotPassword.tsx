@@ -52,7 +52,7 @@ export default function ForgotPassword() {
             <ShieldCheck className="w-6 h-6 text-indigo-400" />
           </div>
           <div>
-            <span className="text-base font-extrabold tracking-tight text-white block">MetrCheck AI</span>
+            <span className="text-base font-extrabold tracking-tight text-white block">Parakh AI</span>
             <span className="text-xs text-slate-400">AI-Assisted Statutory Compliance</span>
           </div>
         </Link>

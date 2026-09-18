@@ -1284,7 +1284,7 @@ Energy: 579 kcal, Protein: 21.2g, Carbohydrates: 21.6g, Total Fat: 49.9g, Sodium
                     ? 'An issue was encountered during package analysis.' 
                     : isComplete 
                       ? 'Organizing findings and opening statutory results...' 
-                      : 'MetrCheck AI is screening the uploaded package images and checking label declarations.'}
+                      : 'Parakh AI is screening the uploaded package images and checking label declarations.'}
                 </p>
               </div>
 
@@ -1511,7 +1511,7 @@ Energy: 579 kcal, Protein: 21.2g, Carbohydrates: 21.6g, Total Fat: 49.9g, Sodium
               <div className="mt-8 pt-4 border-t border-slate-100 dark:border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500 dark:text-slate-400">
                 <div className="flex items-center gap-2">
                   <ShieldCheck className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
-                  <span>Images are processed by the MetrCheck AI screening pipeline.</span>
+                  <span>Images are processed by the Parakh AI screening pipeline.</span>
                 </div>
                 <div className="font-mono text-[11px] text-slate-400 dark:text-slate-500">
                   Legal Metrology Rules 2011 &amp; FSSAI

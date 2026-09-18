@@ -1,4 +1,4 @@
-"""MetrCheck AI — Authentication & Authorization (stdlib-only, ZERO new pip deps).
+"""Parakh AI — Authentication & Authorization (stdlib-only, ZERO new pip deps).
 
 Design decisions (hackathon-safe):
 - Passwords : PBKDF2-HMAC-SHA256 + per-user random salt  (hashlib stdlib)
@@ -39,7 +39,7 @@ ROLE_LABELS = {
 
 # ── Secrets ──────────────────────────────────────────────────────────────
 def _secret_key() -> bytes:
-    key = getattr(settings, "SECRET_KEY", "") or "metrcheck-dev-secret-change-in-prod"
+    key = getattr(settings, "SECRET_KEY", "") or "parakh-dev-secret-change-in-prod"
     return key.encode("utf-8")
 
 
@@ -108,9 +108,9 @@ class DevLoggerDeliveryProvider(PasswordResetDeliveryProvider):
 
     async def send_reset_instructions(self, username: str, raw_token: str, reset_url: str, email: Optional[str] = None) -> bool:
         import logging
-        logger = logging.getLogger("metrcheck.auth")
+        logger = logging.getLogger("parakh.auth")
         is_prod = (
-            os.environ.get("METRCHECK_ENV") == "production" 
+            os.environ.get("PARAKH_ENV") == "production" 
             or os.environ.get("ENVIRONMENT") == "production"
             or getattr(settings, "ENVIRONMENT", "") == "production"
         )
@@ -133,9 +133,9 @@ class DevLoggerDeliveryProvider(PasswordResetDeliveryProvider):
 
     async def send_invitation_email(self, full_name: str, username: str, role: str, raw_token: str, activation_url: str, email: Optional[str] = None) -> bool:
         import logging
-        logger = logging.getLogger("metrcheck.auth")
+        logger = logging.getLogger("parakh.auth")
         is_prod = (
-            os.environ.get("METRCHECK_ENV") == "production" 
+            os.environ.get("PARAKH_ENV") == "production" 
             or os.environ.get("ENVIRONMENT") == "production"
             or getattr(settings, "ENVIRONMENT", "") == "production"
         )
@@ -161,7 +161,7 @@ class DevLoggerDeliveryProvider(PasswordResetDeliveryProvider):
 
 class SMTPDeliveryProvider(PasswordResetDeliveryProvider):
     """Sends password reset and account invitation links via SMTP if configured."""
-    def __init__(self, host: str, port: int = 587, user: str = "", password: str = "", from_addr: str = "noreply@metrcheck.gov.in", use_tls: bool = True):
+    def __init__(self, host: str, port: int = 587, user: str = "", password: str = "", from_addr: str = "noreply@parakh.gov.in", use_tls: bool = True):
         self.host = host
         self.port = port
         self.user = user
@@ -174,25 +174,25 @@ class SMTPDeliveryProvider(PasswordResetDeliveryProvider):
         from email.mime.text import MIMEText
         from email.mime.multipart import MIMEMultipart
         import logging
-        logger = logging.getLogger("metrcheck.auth")
+        logger = logging.getLogger("parakh.auth")
         target_email = (email or "").strip()
         if not target_email or "@" not in target_email:
             logger.info(f"SMTP delivery skipped for account '{username}': no valid recovery email configured.")
             return False
         try:
             msg = MIMEMultipart("alternative")
-            msg["Subject"] = "MetrCheck AI — Password Reset Request"
+            msg["Subject"] = "Parakh AI — Password Reset Request"
             msg["From"] = self.from_addr
             msg["To"] = target_email
 
             text_content = (
                 f"Hello,\n\n"
-                f"A password reset was requested for your MetrCheck AI account '{username}'.\n\n"
+                f"A password reset was requested for your Parakh AI account '{username}'.\n\n"
                 f"Use the link below within {RESET_TOKEN_EXPIRE_MINUTES} minutes to set a new password:\n"
                 f"{reset_url}\n\n"
                 f"This single-use link will expire in {RESET_TOKEN_EXPIRE_MINUTES} minutes.\n"
                 f"If you did not request this password reset, please ignore this email.\n\n"
-                f"— MetrCheck AI Compliance Suite\n"
+                f"— Parakh AI Compliance Suite\n"
                 f"Directorate of Legal Metrology"
             )
 
@@ -200,12 +200,12 @@ class SMTPDeliveryProvider(PasswordResetDeliveryProvider):
 <html>
 <head>
   <meta charset="utf-8">
-  <title>MetrCheck AI — Password Reset Request</title>
+  <title>Parakh AI — Password Reset Request</title>
 </head>
 <body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #0f172a; color: #f8fafc; margin: 0; padding: 24px;">
   <div style="max-width: 560px; margin: 0 auto; background-color: #1e293b; border: 1px solid #334155; border-radius: 16px; overflow: hidden; padding: 32px;">
     <div style="border-bottom: 1px solid #334155; padding-bottom: 16px; margin-bottom: 24px;">
-      <h1 style="color: #6366f1; font-size: 20px; font-weight: 800; margin: 0;">MetrCheck AI</h1>
+      <h1 style="color: #6366f1; font-size: 20px; font-weight: 800; margin: 0;">Parakh AI</h1>
       <p style="color: #94a3b8; font-size: 12px; margin: 4px 0 0 0;">AI-Assisted Statutory Legal Metrology Compliance</p>
     </div>
     
@@ -257,7 +257,7 @@ class SMTPDeliveryProvider(PasswordResetDeliveryProvider):
         from email.mime.text import MIMEText
         from email.mime.multipart import MIMEMultipart
         import logging
-        logger = logging.getLogger("metrcheck.auth")
+        logger = logging.getLogger("parakh.auth")
         target_email = (email or "").strip()
         if not target_email or "@" not in target_email:
             logger.info(f"SMTP invitation skipped for account '{username}': no valid email configured.")
@@ -270,7 +270,7 @@ class SMTPDeliveryProvider(PasswordResetDeliveryProvider):
             if is_audit else
             "Enforcement Workspace access (including Audit and Merchant workspaces) for statutory inspection and evidence investigation."
         )
-        subject = f"MetrCheck AI — {'Audit' if is_audit else 'Enforcement'} Workspace Access Invitation"
+        subject = f"Parakh AI — {'Audit' if is_audit else 'Enforcement'} Workspace Access Invitation"
 
         try:
             msg = MIMEMultipart("alternative")
@@ -280,7 +280,7 @@ class SMTPDeliveryProvider(PasswordResetDeliveryProvider):
 
             text_content = (
                 f"Hello {full_name or username},\n\n"
-                f"An administrator has provisioned an authorized MetrCheck AI account for you.\n\n"
+                f"An administrator has provisioned an authorized Parakh AI account for you.\n\n"
                 f"Account Details:\n"
                 f"- Username: {username}\n"
                 f"- Assigned Role: {role_title} ({role})\n"
@@ -289,8 +289,8 @@ class SMTPDeliveryProvider(PasswordResetDeliveryProvider):
                 f"{activation_url}\n\n"
                 f"Security Notice:\n"
                 f"- This single-use link expires in {INVITATION_TOKEN_EXPIRE_HOURS} hours.\n"
-                f"- MetrCheck AI provisions application workspace roles; organizational authorization exists outside this system.\n\n"
-                f"— MetrCheck AI Administration\n"
+                f"- Parakh AI provisions application workspace roles; organizational authorization exists outside this system.\n\n"
+                f"— Parakh AI Administration\n"
                 f"Directorate of Legal Metrology"
             )
 
@@ -304,7 +304,7 @@ class SMTPDeliveryProvider(PasswordResetDeliveryProvider):
 <body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #0f172a; color: #f8fafc; margin: 0; padding: 24px;">
   <div style="max-width: 580px; margin: 0 auto; background-color: #1e293b; border: 1px solid #334155; border-radius: 16px; overflow: hidden; padding: 32px;">
     <div style="border-bottom: 1px solid #334155; padding-bottom: 16px; margin-bottom: 24px;">
-      <h1 style="color: #6366f1; font-size: 20px; font-weight: 800; margin: 0;">MetrCheck AI</h1>
+      <h1 style="color: #6366f1; font-size: 20px; font-weight: 800; margin: 0;">Parakh AI</h1>
       <p style="color: #94a3b8; font-size: 12px; margin: 4px 0 0 0;">AI-Assisted Statutory Legal Metrology Compliance</p>
     </div>
     
@@ -314,7 +314,7 @@ class SMTPDeliveryProvider(PasswordResetDeliveryProvider):
 
     <h2 style="color: #ffffff; font-size: 18px; font-weight: 700; margin-top: 0;">Account Provisioning Invitation</h2>
     <p style="color: #cbd5e1; font-size: 14px; line-height: 1.6;">
-      Hello <strong>{full_name or username}</strong>, an administrator has provisioned an authorized account for you on <strong>MetrCheck AI</strong>.
+      Hello <strong>{full_name or username}</strong>, an administrator has provisioned an authorized account for you on <strong>Parakh AI</strong>.
     </p>
 
     <div style="background-color: #0f172a; border: 1px solid #334155; border-radius: 12px; padding: 16px; margin: 20px 0; font-size: 13px;">
@@ -339,7 +339,7 @@ class SMTPDeliveryProvider(PasswordResetDeliveryProvider):
     </p>
 
     <div style="border-top: 1px solid #334155; padding-top: 16px; margin-top: 28px; color: #64748b; font-size: 11px; line-height: 1.5;">
-      <p style="margin: 0 0 6px 0;"><strong>Security Notice:</strong> This single-use invitation link expires in {INVITATION_TOKEN_EXPIRE_HOURS} hours. Application roles control access within MetrCheck AI; formal legal authority remains an external process.</p>
+      <p style="margin: 0 0 6px 0;"><strong>Security Notice:</strong> This single-use invitation link expires in {INVITATION_TOKEN_EXPIRE_HOURS} hours. Application roles control access within Parakh AI; formal legal authority remains an external process.</p>
       <p style="margin: 0;">SIH 2026 · Problem Statement 26034</p>
     </div>
   </div>
@@ -369,21 +369,21 @@ _global_delivery_provider: Optional[PasswordResetDeliveryProvider] = None
 def get_delivery_provider() -> PasswordResetDeliveryProvider:
     global _global_delivery_provider
     if _global_delivery_provider is None:
-        if "METRCHECK_SMTP_HOST" in os.environ:
-            smtp_host = (os.environ.get("METRCHECK_SMTP_HOST") or "").strip()
+        if "PARAKH_SMTP_HOST" in os.environ:
+            smtp_host = (os.environ.get("PARAKH_SMTP_HOST") or "").strip()
         else:
-            smtp_host = (getattr(settings, "METRCHECK_SMTP_HOST", "") or "").strip()
+            smtp_host = (getattr(settings, "PARAKH_SMTP_HOST", "") or "").strip()
 
         if smtp_host:
-            port_val = os.environ.get("METRCHECK_SMTP_PORT") or getattr(settings, "METRCHECK_SMTP_PORT", 587)
-            user_val = os.environ.get("METRCHECK_SMTP_USER") or getattr(settings, "METRCHECK_SMTP_USER", "")
-            pass_val = os.environ.get("METRCHECK_SMTP_PASS") or getattr(settings, "METRCHECK_SMTP_PASS", "")
-            from_val = os.environ.get("METRCHECK_SMTP_FROM") or getattr(settings, "METRCHECK_SMTP_FROM", "noreply@metrcheck.gov.in")
-            tls_env = os.environ.get("METRCHECK_SMTP_TLS")
+            port_val = os.environ.get("PARAKH_SMTP_PORT") or getattr(settings, "PARAKH_SMTP_PORT", 587)
+            user_val = os.environ.get("PARAKH_SMTP_USER") or getattr(settings, "PARAKH_SMTP_USER", "")
+            pass_val = os.environ.get("PARAKH_SMTP_PASS") or getattr(settings, "PARAKH_SMTP_PASS", "")
+            from_val = os.environ.get("PARAKH_SMTP_FROM") or getattr(settings, "PARAKH_SMTP_FROM", "noreply@parakh.gov.in")
+            tls_env = os.environ.get("PARAKH_SMTP_TLS")
             if tls_env is not None:
                 tls_val = str(tls_env).lower() in ("true", "1", "yes")
             else:
-                tls_val = bool(getattr(settings, "METRCHECK_SMTP_TLS", True))
+                tls_val = bool(getattr(settings, "PARAKH_SMTP_TLS", True))
             _global_delivery_provider = SMTPDeliveryProvider(
                 host=smtp_host,
                 port=int(port_val),
@@ -407,7 +407,7 @@ def get_delivery_provider_status() -> dict:
     provider = get_delivery_provider()
     is_smtp = isinstance(provider, SMTPDeliveryProvider)
     is_prod = (
-        os.environ.get("METRCHECK_ENV") == "production" 
+        os.environ.get("PARAKH_ENV") == "production" 
         or os.environ.get("ENVIRONMENT") == "production" 
         or getattr(settings, "ENVIRONMENT", "") == "production"
     )

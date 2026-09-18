@@ -1,5 +1,5 @@
 """
-Deterministic, evidence-linked Recommendation & Corrective Action Engine for MetrCheck AI.
+Deterministic, evidence-linked Recommendation & Corrective Action Engine for Parakh AI.
 Generates structured, rule-based recommendations covering all 13 statutory rules.
 No external LLM or network requests are used.
 """

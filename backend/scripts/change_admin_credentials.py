@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-MetrCheck AI — Secure Admin Credential Change CLI Script
+Parakh AI — Secure Admin Credential Change CLI Script
 
 Allows System Administrators to securely update their username, password,
 and recovery details via interactive CLI or automated script arguments.
@@ -67,7 +67,7 @@ def validate_username_format(username: str) -> bool:
 
 
 def validate_password_complexity(password: str) -> tuple[bool, str]:
-    """Validate password strength according to MetrCheck security rules."""
+    """Validate password strength according to Parakh security rules."""
     if not password:
         return False, "Password cannot be empty."
     if len(password) < 8:
@@ -224,30 +224,30 @@ async def change_admin_credentials(
 
 def parse_args():
     parser = argparse.ArgumentParser(
-        description="Securely change the MetrCheck AI System Administrator credentials."
+        description="Securely change the Parakh AI System Administrator credentials."
     )
     parser.add_argument(
         "--current-username",
         "-u",
-        default=os.environ.get("METRCHECK_CURRENT_ADMIN_USERNAME", ""),
+        default=os.environ.get("PARAKH_CURRENT_ADMIN_USERNAME", ""),
         help="Current Admin username",
     )
     parser.add_argument(
         "--current-password",
         "-p",
-        default=os.environ.get("METRCHECK_CURRENT_ADMIN_PASSWORD", ""),
+        default=os.environ.get("PARAKH_CURRENT_ADMIN_PASSWORD", ""),
         help="Current Admin password (prompted interactively if omitted)",
     )
     parser.add_argument(
         "--new-username",
         "-nu",
-        default=os.environ.get("METRCHECK_NEW_ADMIN_USERNAME", ""),
+        default=os.environ.get("PARAKH_NEW_ADMIN_USERNAME", ""),
         help="New Admin username",
     )
     parser.add_argument(
         "--new-password",
         "-np",
-        default=os.environ.get("METRCHECK_NEW_ADMIN_PASSWORD", ""),
+        default=os.environ.get("PARAKH_NEW_ADMIN_PASSWORD", ""),
         help="New Admin password (prompted interactively if omitted)",
     )
     parser.add_argument(
@@ -329,7 +329,7 @@ def main():
         sys.exit(1)
 
     print("=" * 60)
-    print(" [+] METRCHECK AI — ADMIN CREDENTIALS SUCCESSFULLY UPDATED")
+    print(" [+] PARAKH AI — ADMIN CREDENTIALS SUCCESSFULLY UPDATED")
     print("=" * 60)
     print(f" - Admin Account ID      : {result['admin_id']}")
     print(f" - Previous Username      : @{result['old_username']}")

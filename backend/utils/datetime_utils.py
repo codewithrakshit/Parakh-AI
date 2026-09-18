@@ -1,5 +1,5 @@
 """
-MetrCheck AI — Centralized Timezone and DateTime Utility (Backend)
+Parakh AI — Centralized Timezone and DateTime Utility (Backend)
 
 Provides consistent UTC generation, legacy timestamp parsing, and Asia/Kolkata (IST) conversion.
 """

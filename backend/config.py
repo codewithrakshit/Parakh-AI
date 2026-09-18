@@ -15,7 +15,7 @@ class Settings(BaseSettings):
     CORS_ORIGINS: list[str] = ['*']
     TEST_MODE: bool = False
     ENVIRONMENT: str = 'development'
-    SECRET_KEY: str = 'metrcheck-dev-secret-change-in-prod'
+    SECRET_KEY: str = 'parakh-dev-secret-change-in-prod'
     TOKEN_EXPIRE_MINUTES: int = 480
     # Font height px->mm calibration for Legal Metrology Rule 12:
     # mm = px * factor; factor = 25.4 / DPI when OCR_IMAGE_DPI > 0.
@@ -34,14 +34,14 @@ class Settings(BaseSettings):
     CALIBRATION_ENABLED: bool = True
     CALIBRATION_DEFAULT_TARGET_MM: float = 50.0  # 50mm standard ArUco target
     # Phase 7.1.8: SMTP & Password Recovery Delivery Configuration
-    METRCHECK_SMTP_HOST: str = ""
-    METRCHECK_SMTP_PORT: int = 587
-    METRCHECK_SMTP_USER: str = ""
-    METRCHECK_SMTP_PASS: str = ""
-    METRCHECK_SMTP_FROM: str = "noreply@metrcheck.gov.in"
-    METRCHECK_SMTP_TLS: bool = True
-    METRCHECK_FRONTEND_URL: str = ""
-    METRCHECK_DEMO_MODE: bool = True
+    PARAKH_SMTP_HOST: str = ""
+    PARAKH_SMTP_PORT: int = 587
+    PARAKH_SMTP_USER: str = ""
+    PARAKH_SMTP_PASS: str = ""
+    PARAKH_SMTP_FROM: str = "noreply@parakh.gov.in"
+    PARAKH_SMTP_TLS: bool = True
+    PARAKH_FRONTEND_URL: str = ""
+    PARAKH_DEMO_MODE: bool = True
     @field_validator('UPLOAD_DIR', 'DATABASE_PATH', mode='after')
     @classmethod
     def resolve_paths(cls, v: str) -> str:

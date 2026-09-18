@@ -1,5 +1,5 @@
 # ─────────────────────────────────────────────────────────────────────────────
-# MetrCheck AI — Cloud-optimized Dockerfile (Render / Railway / HF Spaces)
+# Parakh AI — Cloud-optimized Dockerfile (Render / Railway / HF Spaces)
 # Lightweight build: Tesseract OCR only (no PaddleOCR).
 # Resulting image ~200MB vs ~2GB for the full paddle build.
 # ─────────────────────────────────────────────────────────────────────────────
@@ -28,7 +28,7 @@ COPY backend/ .
 # Runtime environment
 ENV PYTHONUNBUFFERED=1 \
     OCR_ENGINE=tesseract \
-    METRCHECK_DEMO_MODE=true \
+    PARAKH_DEMO_MODE=true \
     UPLOAD_DIR=/data/uploads \
     DATABASE_PATH=/data/metrc_check.db
 

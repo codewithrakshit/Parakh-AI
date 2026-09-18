@@ -77,7 +77,7 @@ class FoSCoSApiProvider(BaseFSSAIProvider):
 
         try:
             import httpx
-            headers = {"User-Agent": "MetrCheckAI-ComplianceEngine/1.0"}
+            headers = {"User-Agent": "ParakhAI-ComplianceEngine/1.0"}
             if self.api_key:
                 headers["Authorization"] = f"Bearer {self.api_key}"
 
@@ -145,7 +145,7 @@ class LocalFSSAICacheProvider(BaseFSSAIProvider):
             return FSSAIVerificationRecord(
                 licence_number=licence_number,
                 status=entry.get("status", FSSAIVerificationStatus.VERIFIED),
-                provider="MetrCheck Verified FSSAI Local Cache",
+                provider="Parakh Verified FSSAI Local Cache",
                 business_name=entry.get("business_name"),
                 licence_type=entry.get("licence_type"),
                 valid_upto=entry.get("valid_upto"),
@@ -157,7 +157,7 @@ class LocalFSSAICacheProvider(BaseFSSAIProvider):
         return FSSAIVerificationRecord(
             licence_number=licence_number,
             status=FSSAIVerificationStatus.NOT_FOUND,
-            provider="MetrCheck Verified FSSAI Local Cache",
+            provider="Parakh Verified FSSAI Local Cache",
             is_live=False,
             verification_timestamp=now_ts,
             message="Licence not present in local verified cache."
@@ -249,7 +249,7 @@ class FSSAILicenceVerifier:
             return FSSAIVerificationRecord(
                 licence_number=clean_licence,
                 status=FSSAIVerificationStatus.NOT_VERIFIED,
-                provider="MetrCheck Local FoSCoS Format Validator",
+                provider="Parakh Local FoSCoS Format Validator",
                 is_live=False,
                 verification_timestamp=now_ts,
                 message=f"Statutory 14-digit format valid ({clean_licence[:1]} = {category_name}, State={clean_licence[1:3]}). Live registry check unconfigured."
@@ -340,7 +340,7 @@ class GS1DataKartApiProvider(BaseGS1Provider):
 
         try:
             import httpx
-            headers = {"User-Agent": "MetrCheckAI-ComplianceEngine/1.0"}
+            headers = {"User-Agent": "ParakhAI-ComplianceEngine/1.0"}
             if self.api_key:
                 headers["Authorization"] = f"Bearer {self.api_key}"
 
@@ -411,7 +411,7 @@ class LocalGS1CacheProvider(BaseGS1Provider):
             return GS1VerificationRecord(
                 gtin=gtin,
                 status=entry.get("status", GS1VerificationStatus.VERIFIED),
-                provider="MetrCheck Verified GS1 Local Cache",
+                provider="Parakh Verified GS1 Local Cache",
                 brand_name=entry.get("brand_name"),
                 product_description=entry.get("product_description"),
                 company_name=entry.get("company_name"),
@@ -426,7 +426,7 @@ class LocalGS1CacheProvider(BaseGS1Provider):
         return GS1VerificationRecord(
             gtin=gtin,
             status=GS1VerificationStatus.NOT_FOUND,
-            provider="MetrCheck Verified GS1 Local Cache",
+            provider="Parakh Verified GS1 Local Cache",
             is_live=False,
             verification_timestamp=now_ts,
             message="GTIN not present in local verified cache."
@@ -526,7 +526,7 @@ class GS1BarcodeVerifier:
             return GS1VerificationRecord(
                 gtin=clean_gtin,
                 status=GS1VerificationStatus.NOT_VERIFIED,
-                provider="MetrCheck Local GS1 Checksum Validator",
+                provider="Parakh Local GS1 Checksum Validator",
                 is_live=False,
                 verification_timestamp=now_ts,
                 message=f"Standard {gtin_type} structure and Modulo-10 checksum validated. Live DataKart registry check unconfigured."
@@ -544,7 +544,7 @@ from backend.integrations.gs1.verifier import GS1BarcodeVerifier, gs1_verifier
 """
 
 files = {
-    "backend/integrations/__init__.py": '\"\"\"External Integrations Package for MetrCheck AI.\"\"\"\\n',
+    "backend/integrations/__init__.py": '\"\"\"External Integrations Package for Parakh AI.\"\"\"\\n',
     "backend/integrations/fssai/schemas.py": fssai_schemas,
     "backend/integrations/fssai/providers.py": fssai_providers,
     "backend/integrations/fssai/verifier.py": fssai_verifier,

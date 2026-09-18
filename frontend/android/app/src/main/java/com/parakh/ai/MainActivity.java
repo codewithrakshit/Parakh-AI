@@ -1,4 +1,4 @@
-package com.metrcheck.ai;
+package com.parakh.ai;
 
 import com.getcapacitor.BridgeActivity;
 

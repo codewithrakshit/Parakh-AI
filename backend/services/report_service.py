@@ -1,5 +1,5 @@
 """
-MetrCheck AI — Professional PDF Report Generator (Phase 5C)
+Parakh AI — Professional PDF Report Generator (Phase 5C)
 
 This module consumes the existing AnalysisResponse and generates a professional,
 multi-page PDF report. It does NOT recalculate compliance, scoring, or recommendations.
@@ -166,7 +166,7 @@ def _header_footer(canvas, doc):
     # Header text
     canvas.setFont('Helvetica-Bold', 7)
     canvas.setFillColor(INDIGO)
-    canvas.drawString(15*mm, h - 10.5*mm, 'METRCHECK AI')
+    canvas.drawString(15*mm, h - 10.5*mm, 'PARAKH AI')
 
     canvas.setFont('Helvetica', 7)
     canvas.setFillColor(SLATE_400)
@@ -179,7 +179,7 @@ def _header_footer(canvas, doc):
 
     canvas.setFont('Helvetica', 7)
     canvas.setFillColor(SLATE_400)
-    canvas.drawString(15*mm, 7*mm, 'MetrCheck AI — AI-Assisted Compliance Screening')
+    canvas.drawString(15*mm, 7*mm, 'Parakh AI — AI-Assisted Compliance Screening')
     canvas.drawRightString(w - 15*mm, 7*mm, f'Page {doc.page}')
 
     canvas.restoreState()
@@ -250,8 +250,8 @@ def generate_pdf_report(analysis: AnalysisResponse) -> bytes:
         bottomMargin=18*mm,
         leftMargin=15*mm,
         rightMargin=15*mm,
-        title=f'MetrCheck AI Report — {analysis.product_name}',
-        author='MetrCheck AI',
+        title=f'Parakh AI Report — {analysis.product_name}',
+        author='Parakh AI',
     )
 
     story = []
@@ -266,7 +266,7 @@ def generate_pdf_report(analysis: AnalysisResponse) -> bytes:
     # PAGE 1 — EXECUTIVE SUMMARY
     # ══════════════════════════════════════════════════════════════
     story.append(Spacer(1, 2*mm))
-    story.append(Paragraph('METRCHECK AI', styles['ReportTitle']))
+    story.append(Paragraph('PARAKH AI', styles['ReportTitle']))
     story.append(Paragraph(
         'AI-Assisted Packaged Commodity Compliance Screening Report',
         styles['ReportSubtitle']

@@ -48,7 +48,7 @@ export default function ServerSetup() {
           <ShieldCheck className="w-7 h-7 text-indigo-400" />
         </div>
         <div>
-          <span className="text-lg font-extrabold tracking-tight text-white block">MetrCheck AI</span>
+          <span className="text-lg font-extrabold tracking-tight text-white block">Parakh AI</span>
           <span className="text-xs text-slate-400">AI-Assisted Statutory Compliance</span>
         </div>
       </div>
@@ -59,8 +59,8 @@ export default function ServerSetup() {
           <div className="mx-auto w-14 h-14 rounded-2xl bg-indigo-500/15 border border-indigo-500/30 flex items-center justify-center">
             <Server className="w-7 h-7 text-indigo-400" />
           </div>
-          <h1 className="text-xl font-bold text-white">Connect to MetrCheck Server</h1>
-          <p className="text-sm text-slate-400">Enter your MetrCheck AI backend server URL to get started.</p>
+          <h1 className="text-xl font-bold text-white">Connect to Parakh Server</h1>
+          <p className="text-sm text-slate-400">Enter your Parakh AI backend server URL to get started.</p>
         </div>
 
         {/* URL Input */}

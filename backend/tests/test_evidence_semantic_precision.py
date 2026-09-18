@@ -1,6 +1,6 @@
 """
 Comprehensive Semantic Precision and Negative False-Positive Tests for Evidence Locator.
-Verifies Bugs 1 through 5 as required by MetrCheck AI Acceptance Audit:
+Verifies Bugs 1 through 5 as required by Parakh AI Acceptance Audit:
 - Bug 1: Short keyword substring safety (/g does not match MAKING)
 - Bug 2: LM-007 Unit Sale Price precision (no tagline false matches)
 - Bug 3: FS-003 Ingredients detection (header variations and allergen context)

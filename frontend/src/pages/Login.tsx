@@ -181,7 +181,7 @@ export default function Login() {
             <ShieldCheck className="w-6 h-6 text-indigo-400" />
           </div>
           <div>
-            <span className="text-base font-extrabold tracking-tight text-white block">MetrCheck AI</span>
+            <span className="text-base font-extrabold tracking-tight text-white block">Parakh AI</span>
             <span className="text-xs text-slate-400">AI-Assisted Statutory Compliance</span>
           </div>
         </div>
@@ -269,7 +269,7 @@ export default function Login() {
                 Choose your workspace
               </h1>
               <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                MetrCheck AI provides three specialized operating environments over a unified statutory compliance analysis pipeline. Select your destination workspace to sign in.
+                Parakh AI provides three specialized operating environments over a unified statutory compliance analysis pipeline. Select your destination workspace to sign in.
               </p>
             </div>
 
@@ -684,8 +684,8 @@ export default function Login() {
                 </div>
               )}
 
-              {/* SIH Demo Accounts Section — Strictly opt-in only when VITE_METRCHECK_DEMO_MODE is explicitly 'true' */}
-              {import.meta.env.VITE_METRCHECK_DEMO_MODE === 'true' && (
+              {/* SIH Demo Accounts Section — Strictly opt-in only when VITE_PARAKH_DEMO_MODE is explicitly 'true' */}
+              {import.meta.env.VITE_PARAKH_DEMO_MODE === 'true' && (
                 <div className="px-6 pb-6 pt-1">
                   <div className="rounded-2xl bg-slate-950/60 border border-slate-800/90 p-4 space-y-3">
                     <div className="flex items-center justify-between">
@@ -866,7 +866,7 @@ export default function Login() {
 
             <div className="space-y-2 text-xs text-slate-300">
               <p className="leading-relaxed">
-                Enter your MetrCheck server URL. Use your Cloudflare Tunnel HTTPS URL for remote access, or local network IP (e.g. <code className="text-indigo-300">http://192.168.x.x:8000</code>) on the same Wi-Fi.
+                Enter your Parakh server URL. Use your Cloudflare Tunnel HTTPS URL for remote access, or local network IP (e.g. <code className="text-indigo-300">http://192.168.x.x:8000</code>) on the same Wi-Fi.
               </p>
               <div>
                 <label className="block text-xs font-medium text-slate-400 mb-1">Backend Server URL</label>
@@ -887,7 +887,7 @@ export default function Login() {
               {serverTestStatus === 'success' && (
                 <div className="p-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs flex items-center gap-2">
                   <CheckCircle2 className="w-4 h-4 shrink-0" />
-                  <span>Successfully connected to MetrCheck AI Backend!</span>
+                  <span>Successfully connected to Parakh AI Backend!</span>
                 </div>
               )}
 

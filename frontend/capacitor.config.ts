@@ -1,8 +1,8 @@
 import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'com.metrcheck.ai',
-  appName: 'MetrCheck AI',
+  appId: 'com.parakh.ai',
+  appName: 'Parakh AI',
   webDir: 'dist',
   server: {
     androidScheme: 'https',

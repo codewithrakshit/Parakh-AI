@@ -12,7 +12,7 @@ async def test_bootstrap_admin_creation_and_idempotency():
     success = await bootstrap_admin(
         username="bootstrap_admin_test",
         password="AdminTestPassword123!",
-        email="bootstrap_admin@metrcheck.gov.in",
+        email="bootstrap_admin@parakh.gov.in",
         full_name="Bootstrap Admin",
         jurisdiction="DoCA Directorate",
         overwrite=False
@@ -22,7 +22,7 @@ async def test_bootstrap_admin_creation_and_idempotency():
     user = await get_user_by_username("bootstrap_admin_test")
     assert user is not None
     assert user["role"] == ROLE_ADMIN
-    assert user["email"] == "bootstrap_admin@metrcheck.gov.in"
+    assert user["email"] == "bootstrap_admin@parakh.gov.in"
     assert user["status"] == "ACTIVE"
     assert verify_password("AdminTestPassword123!", user["salt"], user["password_hash"]) is True
 
@@ -40,12 +40,12 @@ async def test_bootstrap_admin_creation_and_idempotency():
     success_overwrite = await bootstrap_admin(
         username="bootstrap_admin_test",
         password="NewAdminPassword789!",
-        email="new_email@metrcheck.gov.in",
+        email="new_email@parakh.gov.in",
         overwrite=True
     )
     assert success_overwrite is True
     user_updated = await get_user_by_username("bootstrap_admin_test")
-    assert user_updated["email"] == "new_email@metrcheck.gov.in"
+    assert user_updated["email"] == "new_email@parakh.gov.in"
     assert verify_password("NewAdminPassword789!", user_updated["salt"], user_updated["password_hash"]) is True
 
 

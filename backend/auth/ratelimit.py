@@ -1,4 +1,4 @@
-"""MetrCheck AI — In-Memory Rate Limiting for Authentication & Password Recovery.
+"""Parakh AI — In-Memory Rate Limiting for Authentication & Password Recovery.
 
 Features:
 - Thread-safe sliding-window rate limiting (process-local, designed for prototype/single-instance server).

@@ -1,4 +1,4 @@
-# MetrCheck full E2E smoke — runs against http://localhost:8001/api
+# Parakh full E2E smoke — runs against http://localhost:8001/api
 import json, time, urllib.request, urllib.error, uuid, os
 
 BASE = "http://localhost:8001/api"
@@ -61,8 +61,8 @@ st, j = req("/health")
 check("health", st == 200 and j.get("status") in ("ok", "healthy", "up"), f"st={st}")
 
 # 2. admin login (uses env var or test default)
-adm_user = os.environ.get("METRCHECK_ADMIN_USERNAME", "admin")
-adm_pass = os.environ.get("METRCHECK_ADMIN_PASSWORD", "admin123")
+adm_user = os.environ.get("PARAKH_ADMIN_USERNAME", "admin")
+adm_pass = os.environ.get("PARAKH_ADMIN_PASSWORD", "admin123")
 st, j = req("/auth/login", "POST", {"username": adm_user, "password": adm_pass})
 token = (j or {}).get("token") or (j or {}).get("access_token") or ""
 check("admin login", st == 200 and bool(token), f"st={st} keys={list((j or {}).keys())[:5]}")

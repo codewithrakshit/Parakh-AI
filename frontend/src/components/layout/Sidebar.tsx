@@ -192,7 +192,7 @@ export default function Sidebar({
             {!collapsed && (
               <div className="flex flex-col min-w-0">
                 <span className="font-extrabold text-base text-white tracking-tight leading-tight">
-                  MetrCheck<span className="text-indigo-400"> AI</span>
+                  Parakh<span className="text-indigo-400"> AI</span>
                 </span>
                 <span className="text-[10px] font-medium text-slate-400 truncate">
                   AI-Assisted Compliance

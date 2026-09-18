@@ -63,7 +63,7 @@ def get_allowed_workspaces_for_role(role: str):
 @pytest.fixture(scope="module")
 def client():
     os.environ["TEST_MODE"] = "1"
-    os.environ["METRCHECK_ENV"] = "development"
+    os.environ["PARAKH_ENV"] = "development"
     settings.TEST_MODE = True
     with TestClient(app) as c:
         yield c

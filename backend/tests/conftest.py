@@ -19,7 +19,7 @@ def session_test_isolation():
     """Global session-level safety guarantee for all pytest tests.
     Forces all tests to execute in an isolated temporary environment.
     """
-    temp_dir = tempfile.mkdtemp(prefix="metrcheck_pytest_session_")
+    temp_dir = tempfile.mkdtemp(prefix="parakh_pytest_session_")
     test_db_path = os.path.abspath(os.path.join(temp_dir, "test_metrc_check.db"))
     test_upload_dir = os.path.abspath(os.path.join(temp_dir, "test_uploads"))
     os.makedirs(test_upload_dir, exist_ok=True)

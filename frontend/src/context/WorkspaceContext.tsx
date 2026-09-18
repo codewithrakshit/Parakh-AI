@@ -2,7 +2,7 @@ import { createContext, useContext, useEffect, useState, useMemo, type ReactNode
 import { type WorkspaceType, type WorkspaceDefinition } from '../types';
 import { useAuth } from './AuthContext';
 
-export const WORKSPACE_STORAGE_KEY = 'metrcheck-active-workspace';
+export const WORKSPACE_STORAGE_KEY = 'parakh-active-workspace';
 
 export const WORKSPACE_DEFINITIONS: Record<WorkspaceType, WorkspaceDefinition> = {
   MERCHANT: {

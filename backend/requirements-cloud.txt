@@ -1,4 +1,4 @@
-# MetrCheck AI — Cloud / lightweight deployment requirements (Render, Railway, HF Spaces)
+# Parakh AI — Cloud / lightweight deployment requirements (Render, Railway, HF Spaces)
 # Excludes paddleocr/paddlepaddle (2GB+ RAM) in favor of pytesseract (~200MB)
 # For Render free tier (512MB RAM), HF Spaces, Railway, or any low-memory container
 

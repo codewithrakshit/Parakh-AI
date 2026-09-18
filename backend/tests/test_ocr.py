@@ -40,7 +40,7 @@ async def test_paddle_engine_extract_mock():
 
     mock_paddle_3x_output = [
         {
-            "rec_texts": ["METRCHECK COLD BREW", "Net Qty: 400 9", "Lic No: FSSA1 10019022009876", "MRP Rs. 299.00"],
+            "rec_texts": ["PARAKH COLD BREW", "Net Qty: 400 9", "Lic No: FSSA1 10019022009876", "MRP Rs. 299.00"],
             "rec_scores": [0.985, 0.942, 0.961, 0.991],
             "rec_boxes": [[10, 20, 100, 50], [15, 60, 120, 90], [20, 100, 150, 130], [25, 140, 110, 170]],
         }
@@ -80,7 +80,7 @@ async def test_paddle_engine_extract_legacy_mock():
 
     mock_paddle_2x_output = [
         [
-            [[[10, 20], [100, 20], [100, 50], [10, 50]], ("METRCHECK COLD BREW", 0.985)],
+            [[[10, 20], [100, 20], [100, 50], [10, 50]], ("PARAKH COLD BREW", 0.985)],
             [[[15, 60], [120, 60], [120, 90], [15, 90]], ("Net Qty: 400 9", 0.942)],
         ]
     ]

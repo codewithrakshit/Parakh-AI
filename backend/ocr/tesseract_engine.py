@@ -1,5 +1,5 @@
 """
-Tesseract OCR engine for MetrCheck AI (cloud / low-memory deployments).
+Tesseract OCR engine for Parakh AI (cloud / low-memory deployments).
 
 Lightweight drop-in replacement for PaddleOCREngine (which needs ~2GB+ RAM
 and is unsuitable for free-tier cloud instances like Render's 512MB).

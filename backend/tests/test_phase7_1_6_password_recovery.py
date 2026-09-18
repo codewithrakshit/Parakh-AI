@@ -334,17 +334,17 @@ async def test_password_reset_preserves_admin_role_and_workspaces():
 
 @pytest.mark.asyncio
 async def test_production_environment_suppresses_dev_token():
-    """21 & 22. In production (METRCHECK_ENV=production), dev_token is strictly omitted from API response."""
+    """21 & 22. In production (PARAKH_ENV=production), dev_token is strictly omitted from API response."""
     client = TestClient(app)
     
-    os.environ["METRCHECK_ENV"] = "production"
+    os.environ["PARAKH_ENV"] = "production"
     try:
         resp = client.post("/api/auth/forgot-password", json={"identifier": "merchant"})
         assert resp.status_code == 200
         # Under production mode, dev_token MUST NOT be returned
         assert resp.json().get("dev_token") is None
     finally:
-        os.environ["METRCHECK_ENV"] = "development"
+        os.environ["PARAKH_ENV"] = "development"
 
 
 # ── 23: Login Brute-Force Rate Limiting ───────────────────────────────────
@@ -390,14 +390,14 @@ async def test_dev_logger_does_not_log_tokens_in_production(caplog):
     """25 & 26. DevLoggerDeliveryProvider refuses to log raw tokens when running in production."""
     provider = DevLoggerDeliveryProvider()
     
-    os.environ["METRCHECK_ENV"] = "production"
+    os.environ["PARAKH_ENV"] = "production"
     try:
         ok = await provider.send_reset_instructions("officer", "secret_raw_token_xyz", "http://example.com/reset")
         assert ok is False
         # Token must not appear in captured log output
         assert "secret_raw_token_xyz" not in caplog.text
     finally:
-        os.environ["METRCHECK_ENV"] = "development"
+        os.environ["PARAKH_ENV"] = "development"
 
 
 @pytest.mark.asyncio

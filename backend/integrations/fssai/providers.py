@@ -41,7 +41,7 @@ class FoSCoSApiProvider(BaseFSSAIProvider):
 
         try:
             import httpx
-            headers = {"User-Agent": "MetrCheckAI-ComplianceEngine/1.0"}
+            headers = {"User-Agent": "ParakhAI-ComplianceEngine/1.0"}
             if self.api_key:
                 headers["Authorization"] = f"Bearer {self.api_key}"
 
@@ -109,7 +109,7 @@ class LocalFSSAICacheProvider(BaseFSSAIProvider):
             return FSSAIVerificationRecord(
                 licence_number=licence_number,
                 status=entry.get("status", FSSAIVerificationStatus.VERIFIED),
-                provider="MetrCheck Verified FSSAI Local Cache",
+                provider="Parakh Verified FSSAI Local Cache",
                 business_name=entry.get("business_name"),
                 licence_type=entry.get("licence_type"),
                 valid_upto=entry.get("valid_upto"),
@@ -121,7 +121,7 @@ class LocalFSSAICacheProvider(BaseFSSAIProvider):
         return FSSAIVerificationRecord(
             licence_number=licence_number,
             status=FSSAIVerificationStatus.NOT_FOUND,
-            provider="MetrCheck Verified FSSAI Local Cache",
+            provider="Parakh Verified FSSAI Local Cache",
             is_live=False,
             verification_timestamp=now_ts,
             message="Licence not present in local verified cache."

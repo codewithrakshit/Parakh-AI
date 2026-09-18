@@ -1,5 +1,5 @@
 """
-Test Isolation & Safety Utilities for MetrCheck AI.
+Test Isolation & Safety Utilities for Parakh AI.
 Guarantees 100% isolation between automated tests and the production/development database.
 """
 
@@ -38,7 +38,7 @@ def isolated_test_env():
     Guarantees that tests NEVER interact with backend/metrc_check.db or backend/uploads/.
     Automatically creates the schema and cleans up on exit.
     """
-    temp_dir = tempfile.mkdtemp(prefix="metrcheck_test_")
+    temp_dir = tempfile.mkdtemp(prefix="parakh_test_")
     test_db_path = os.path.abspath(os.path.join(temp_dir, "test_metrc_check.db"))
     test_upload_dir = os.path.abspath(os.path.join(temp_dir, "test_uploads"))
     os.makedirs(test_upload_dir, exist_ok=True)

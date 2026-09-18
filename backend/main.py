@@ -18,7 +18,7 @@ async def lifespan(app: FastAPI):
     yield
     # Shutdown
 
-app = FastAPI(title="MetrCheck AI API", version="1.0.0", lifespan=lifespan)
+app = FastAPI(title="Parakh AI API", version="1.0.0", lifespan=lifespan)
 
 app.add_middleware(
     CORSMiddleware,
@@ -45,4 +45,4 @@ app.include_router(integrations.router, prefix="/api", tags=["Integrations & Met
 
 @app.get("/")
 def read_root():
-    return {"message": "Welcome to MetrCheck AI API", "docs": "/docs"}
+    return {"message": "Welcome to Parakh AI API", "docs": "/docs"}

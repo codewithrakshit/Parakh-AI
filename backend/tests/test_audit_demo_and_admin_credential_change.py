@@ -31,7 +31,7 @@ from scripts.change_admin_credentials import (
 @pytest.fixture(scope="module")
 def client():
     os.environ["TEST_MODE"] = "1"
-    os.environ["METRCHECK_ENV"] = "development"
+    os.environ["PARAKH_ENV"] = "development"
     settings.TEST_MODE = True
     with TestClient(app) as c:
         yield c
@@ -81,8 +81,8 @@ async def test_02_backend_demo_seeding_matrix_and_prod_guard():
     await delete_user("test_audit_temp")
 
     # Case A: Demo mode True + Non-production -> seeds operational demo accounts
-    settings.METRCHECK_DEMO_MODE = True
-    os.environ["METRCHECK_DEMO_MODE"] = "true"
+    settings.PARAKH_DEMO_MODE = True
+    os.environ["PARAKH_DEMO_MODE"] = "true"
     os.environ["ENVIRONMENT"] = "development"
     await seed_default_users()
     assert (await get_user_by_username("audit")) is not None
@@ -91,20 +91,20 @@ async def test_02_backend_demo_seeding_matrix_and_prod_guard():
 
     # Case B: Demo mode False -> does NOT seed demo accounts
     await delete_user("temp_seeded_user")
-    settings.METRCHECK_DEMO_MODE = False
-    os.environ["METRCHECK_DEMO_MODE"] = "false"
+    settings.PARAKH_DEMO_MODE = False
+    os.environ["PARAKH_DEMO_MODE"] = "false"
     await seed_default_users()
 
     # Case C: Production environment -> strictly blocks demo seeding even if demo mode is set
     os.environ["ENVIRONMENT"] = "production"
-    settings.METRCHECK_DEMO_MODE = True
-    os.environ["METRCHECK_DEMO_MODE"] = "true"
+    settings.PARAKH_DEMO_MODE = True
+    os.environ["PARAKH_DEMO_MODE"] = "true"
     await seed_default_users()
 
     # Reset test environment
     os.environ["ENVIRONMENT"] = "development"
-    settings.METRCHECK_DEMO_MODE = True
-    os.environ["METRCHECK_DEMO_MODE"] = "true"
+    settings.PARAKH_DEMO_MODE = True
+    os.environ["PARAKH_DEMO_MODE"] = "true"
 
 
 def test_03_frontend_demo_visibility_condition():
@@ -223,7 +223,7 @@ async def test_06_admin_credential_change_lifecycle_and_leak_prevention(client):
         current_password="admin123",
         new_username=temp_new_user,
         new_password=temp_new_pass,
-        email="chief_admin@metrcheck.gov.in",
+        email="chief_admin@parakh.gov.in",
         full_name="Chief Administrator",
     )
     assert change_res["success"] is True

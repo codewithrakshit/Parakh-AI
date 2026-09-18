@@ -91,7 +91,7 @@ class GS1BarcodeVerifier:
             return GS1VerificationRecord(
                 gtin=clean_gtin,
                 status=GS1VerificationStatus.NOT_VERIFIED,
-                provider="MetrCheck Local GS1 Checksum Validator",
+                provider="Parakh Local GS1 Checksum Validator",
                 is_live=False,
                 verification_timestamp=now_ts,
                 message=f"Standard {gtin_type} structure and Modulo-10 checksum validated. Live DataKart registry check unconfigured."

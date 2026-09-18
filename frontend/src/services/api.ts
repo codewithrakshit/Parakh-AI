@@ -9,7 +9,7 @@ const BASE_URL = {
   toString: () => getApiBaseUrl()
 };
 
-const TOKEN_KEY = 'metrcheck-token';
+const TOKEN_KEY = 'parakh-token';
 
 export const tokenStore = {
   get: (): string | null => {
@@ -43,8 +43,8 @@ async function fetchJSON<T>(url: string, options?: RequestInit & { _timeout?: nu
   // Relative URLs (e.g. '/api/...', '/auth/login') resolve to the WebView's own
   // origin (https://localhost) and return index.html — not JSON.
   if (!url || (url.startsWith('/') && isNativePlatform() && !getApiHost())) {
-    const errorMsg = 'No backend server configured. Please configure your MetrCheck AI server address in Server Settings.';
-    console.error(`[MetrCheck API] Blocked relative request without configured host on mobile: ${url}`);
+    const errorMsg = 'No backend server configured. Please configure your Parakh AI server address in Server Settings.';
+    console.error(`[Parakh API] Blocked relative request without configured host on mobile: ${url}`);
     throw new Error(errorMsg);
   }
 
@@ -54,7 +54,7 @@ async function fetchJSON<T>(url: string, options?: RequestInit & { _timeout?: nu
 
   // Safe request logging (URL and method only — never credentials or payload)
   if (isAuthOrCritical) {
-    console.log(`[MetrCheck API] Request: ${options?.method || 'GET'} ${url}`);
+    console.log(`[Parakh API] Request: ${options?.method || 'GET'} ${url}`);
   }
 
   let response: Response;
@@ -63,13 +63,13 @@ async function fetchJSON<T>(url: string, options?: RequestInit & { _timeout?: nu
   } catch (err: any) {
     clearTimeout(timeout);
     if (err.name === 'AbortError') {
-      if (isAuthOrCritical) console.error(`[MetrCheck API] Request timed out (${timeoutMs}ms) for ${url}`);
+      if (isAuthOrCritical) console.error(`[Parakh API] Request timed out (${timeoutMs}ms) for ${url}`);
       throw new Error('Request timed out. The backend server may be busy or unreachable.');
     }
     const host = getApiHost();
     const hostDesc = host ? `(${host})` : '(No server configured)';
     if (isAuthOrCritical) {
-      console.error(`[MetrCheck API] Network connection failed for ${url}:`, err.message);
+      console.error(`[Parakh API] Network connection failed for ${url}:`, err.message);
     }
     if (!host && isNativePlatform()) {
       throw new Error('No backend server configured. Please tap "Server Settings" on the login screen to set your server URL.');
@@ -90,9 +90,9 @@ async function fetchJSON<T>(url: string, options?: RequestInit & { _timeout?: nu
     const sanitizedPreview = preview
       .replace(/"token"\s*:\s*"[^"]+"/g, '"token":"[REDACTED]"')
       .replace(/"password"\s*:\s*"[^"]+"/g, '"password":"[REDACTED]"');
-    console.log(`[MetrCheck API] Status: ${response.status} ${response.statusText}`);
-    console.log(`[MetrCheck API] Content-Type: ${contentType || '[NONE]'}`);
-    console.log(`[MetrCheck API] Body Preview: ${sanitizedPreview}`);
+    console.log(`[Parakh API] Status: ${response.status} ${response.statusText}`);
+    console.log(`[Parakh API] Content-Type: ${contentType || '[NONE]'}`);
+    console.log(`[Parakh API] Body Preview: ${sanitizedPreview}`);
   }
 
   const isJsonHeader = contentType.toLowerCase().includes('application/json');
@@ -111,7 +111,7 @@ async function fetchJSON<T>(url: string, options?: RequestInit & { _timeout?: nu
   // Handle HTML document fallback (e.g. Capacitor WebView routing to index.html instead of FastAPI)
   if (isHtml || (!isJsonHeader && data === null)) {
     const host = getApiHost();
-    console.error(`[MetrCheck API] Expected JSON from ${url}, but received non-JSON (${contentType || 'unknown'}). Status: ${response.status}`);
+    console.error(`[Parakh API] Expected JSON from ${url}, but received non-JSON (${contentType || 'unknown'}). Status: ${response.status}`);
     if (isHtml) {
       throw new Error(
         `Backend/API unavailable: Server returned an HTML web page instead of JSON (${response.status} ${response.statusText}). ` +

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-MetrCheck AI — Admin Bootstrap & Provisioning CLI Script
+Parakh AI — Admin Bootstrap & Provisioning CLI Script
 
 Safely provisions or restores the primary System Administrator (ADMIN) account
 without exposing passwords in logs, without public endpoints, and without affecting
@@ -143,24 +143,24 @@ async def bootstrap_admin(
 
 def parse_args():
     parser = argparse.ArgumentParser(
-        description="Bootstrap or restore the MetrCheck AI System Administrator account."
+        description="Bootstrap or restore the Parakh AI System Administrator account."
     )
     parser.add_argument(
         "--username",
         "-u",
-        default=os.environ.get("METRCHECK_ADMIN_USERNAME", "admin"),
-        help="Admin username (default: 'admin' or $METRCHECK_ADMIN_USERNAME)",
+        default=os.environ.get("PARAKH_ADMIN_USERNAME", "admin"),
+        help="Admin username (default: 'admin' or $PARAKH_ADMIN_USERNAME)",
     )
     parser.add_argument(
         "--password",
         "-p",
-        default=os.environ.get("METRCHECK_ADMIN_PASSWORD", ""),
-        help="Admin password (min 8 chars; if omitted, prompts interactively or uses $METRCHECK_ADMIN_PASSWORD)",
+        default=os.environ.get("PARAKH_ADMIN_PASSWORD", ""),
+        help="Admin password (min 8 chars; if omitted, prompts interactively or uses $PARAKH_ADMIN_PASSWORD)",
     )
     parser.add_argument(
         "--email",
         "-e",
-        default=os.environ.get("METRCHECK_ADMIN_EMAIL", ""),
+        default=os.environ.get("PARAKH_ADMIN_EMAIL", ""),
         help="Admin recovery email address",
     )
     parser.add_argument(
@@ -193,7 +193,7 @@ def main():
                 print("[!] Error: Passwords do not match.", file=sys.stderr)
                 sys.exit(1)
         else:
-            print("[!] Error: Password required via --password, $METRCHECK_ADMIN_PASSWORD, or interactive prompt.", file=sys.stderr)
+            print("[!] Error: Password required via --password, $PARAKH_ADMIN_PASSWORD, or interactive prompt.", file=sys.stderr)
             sys.exit(1)
 
     success = asyncio.run(

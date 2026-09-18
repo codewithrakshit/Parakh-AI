@@ -1,4 +1,4 @@
-# MetrCheck AI — 10-Minute SIH Judge Demonstration Runbook
+# Parakh AI — 10-Minute SIH Judge Demonstration Runbook
 **Smart India Hackathon 2026 | Problem Statement: PS 26034 (DoCA / MoCA)**  
 **Project:** AI-Assisted Statutory Package Compliance & Enforcement System
 
@@ -42,7 +42,7 @@
 >
 > Today, enforcement officers from the Department of Consumer Affairs (DoCA) and State Legal Metrology Wings are constrained by slow, manual, subjective inspections covering less than 1% of market inventory.
 >
-> **MetrCheck AI** solves this with an enterprise-grade, automated statutory compliance and enforcement engine:
+> **Parakh AI** solves this with an enterprise-grade, automated statutory compliance and enforcement engine:
 > 1. **Multi-Pass OCR & Visual Grounding**: Extracts text from multi-panel product packaging with pixel-accurate bounding box evidence.
 > 2. **Rule 12 Mathematical Font Calibration**: Converts pixel dimensions to physical millimeters ($mm = px \times \text{factor}$) to verify statutory minimum numeral/letter heights (1.0mm to 6.0mm).
 > 3. **Statutory Rule Engine**: Evaluates 10+ Legal Metrology Rules (LM-001 through LM-010) plus FSSAI regulations.

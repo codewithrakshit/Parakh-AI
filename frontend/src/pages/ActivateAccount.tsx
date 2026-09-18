@@ -97,7 +97,7 @@ export default function ActivateAccount() {
             </div>
           </div>
           <div>
-            <span className="font-black tracking-tight text-white text-base sm:text-lg">MetrCheck</span>
+            <span className="font-black tracking-tight text-white text-base sm:text-lg">Parakh</span>
             <span className="text-xs font-bold text-indigo-400 ml-1">AI</span>
           </div>
         </div>
@@ -133,7 +133,7 @@ export default function ActivateAccount() {
             <div className="p-4 rounded-2xl bg-slate-950/60 border border-slate-800 text-xs text-slate-300 leading-relaxed space-y-2">
               <p>{verifyError}</p>
               <p className="text-slate-400 text-[11px]">
-                Account invitation links expire after 24 hours or after their first use. If your link expired, please ask your MetrCheck administrator to resend an invitation.
+                Account invitation links expire after 24 hours or after their first use. If your link expired, please ask your Parakh administrator to resend an invitation.
               </p>
             </div>
 

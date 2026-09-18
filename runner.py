@@ -34,12 +34,12 @@ def kill_ports(ports=(5173, 8000)):
         subprocess.run(cmd, shell=True, capture_output=True)
 
 def check_and_prompt_firewall():
-    """Checks if Windows Firewall rule exists for MetrCheck. If not, offers guidance."""
+    """Checks if Windows Firewall rule exists for Parakh. If not, offers guidance."""
     if os.name == 'nt':
         try:
-            check_cmd = "powershell -NoProfile -Command \"(Get-NetFirewallRule -DisplayName 'MetrCheck AI (5173, 8000)' -ErrorAction SilentlyContinue).DisplayName\""
+            check_cmd = "powershell -NoProfile -Command \"(Get-NetFirewallRule -DisplayName 'Parakh AI (5173, 8000)' -ErrorAction SilentlyContinue).DisplayName\""
             res = subprocess.run(check_cmd, shell=True, capture_output=True, text=True)
-            if "MetrCheck" not in res.stdout:
+            if "Parakh" not in res.stdout:
                 log("[*] Note: If your phone cannot connect on local Wi-Fi, run allow_firewall.bat as Admin once.")
         except Exception:
             pass
@@ -48,7 +48,7 @@ def wait_for_service(url: str, total_timeout: float = 30.0, req_timeout: float =
     start_time = time.time()
     while time.time() - start_time < total_timeout:
         try:
-            req = urllib.request.Request(url, headers={"User-Agent": "MetrCheck-HealthCheck"})
+            req = urllib.request.Request(url, headers={"User-Agent": "Parakh-HealthCheck"})
             with urllib.request.urlopen(req, timeout=req_timeout) as resp:
                 if resp.status in (200, 304):
                     return True
@@ -70,7 +70,7 @@ def print_qr(url: str):
 
 def main():
     log("=" * 64)
-    log("     MetrCheck AI - Automated Launch & Verification System")
+    log("     Parakh AI - Automated Launch & Verification System")
     log("================================================================")
     log()
 
@@ -171,7 +171,7 @@ def main():
                 break
             time.sleep(1)
     except KeyboardInterrupt:
-        log("\n[*] Stopping MetrCheck AI servers...")
+        log("\n[*] Stopping Parakh AI servers...")
     finally:
         try:
             backend_proc.terminate()

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-MetrCheck AI – History Test Record Cleanup Script.
+Parakh AI – History Test Record Cleanup Script.
 Safely and idempotently removes synthetic test records (e.g., test-alpino-*, test-*)
 from the development/production database without affecting genuine user analyses.
 """
@@ -25,7 +25,7 @@ PROTECTED_ASSETS = {
 
 def clean_test_records(dry_run: bool = False):
     mode_str = 'DRY RUN (no changes)' if dry_run else 'LIVE EXECUTION'
-    print(f"[*] MetrCheck AI History Cleanup Script")
+    print(f"[*] Parakh AI History Cleanup Script")
     print(f"[*] Database path: {DB_PATH}")
     print(f"[*] Uploads dir:   {UPLOAD_DIR}")
     print(f"[*] Mode:          {mode_str}")
@@ -101,7 +101,7 @@ def clean_test_records(dry_run: bool = False):
 
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='Cleanup test records from MetrCheck AI database')
+    parser = argparse.ArgumentParser(description='Cleanup test records from Parakh AI database')
     parser.add_argument('--dry-run', action='store_true', help='Preview records to be deleted without modifying DB')
     args = parser.parse_args()
     clean_test_records(dry_run=args.dry_run)
